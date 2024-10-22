@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PCIDevArray",
+            "request": "launch",
+            "mainClass": "PCIDevArray",
+            "projectName": "project_c88f14f5"
+        },
+        {
+            "type": "java",
             "name": "PCIDevice",
             "request": "launch",
             "mainClass": "PCIDevice",
