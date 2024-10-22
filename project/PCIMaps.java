@@ -1,8 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PCIMaps {
     private HashMap<String, String> vendorMap;
@@ -43,8 +43,6 @@ public class PCIMaps {
             System.err.println("Error reading CSV: " + e.getMessage());
         }
     }
-
-    // Properly handle CSV parsing including quoted fields
     private ArrayList<String> parseCSVLine(String line) {
         ArrayList<String> fields = new ArrayList<>();
         StringBuilder field = new StringBuilder();
@@ -92,21 +90,21 @@ public class PCIMaps {
     }
 
     // Simple test main method
-    public static void main(String[] args) {
-        PCIMaps maps = new PCIMaps();
-        maps.loadMaps("pci_devices.csv");
+    // public static void main(String[] args) {
+    //     PCIMaps maps = new PCIMaps();
+    //     maps.loadMaps("pci_devices.csv");
         
-        // Print sizes
-        System.out.println("Vendor Map size: " + maps.getVendorMap().size());
-        System.out.println("Product Map size: " + maps.getProductMap().size());
+    //     // Print sizes
+    //     System.out.println("Vendor Map size: " + maps.getVendorMap().size());
+    //     System.out.println("Product Map size: " + maps.getProductMap().size());
         
-        // Test lookups
-        String testVendorId = "0014";
-        String testDeviceId = "7a00";
+    //     // Test lookups
+    //     String testVendorId = "0014";
+    //     String testDeviceId = "7a00";
         
-        System.out.println("\nTesting lookups:");
-        System.out.println("Vendor " + testVendorId + ": " + maps.getVendorName(testVendorId));
-        System.out.println("Product " + testVendorId + ":" + testDeviceId + ": " + 
-                          maps.getProductName(testVendorId, testDeviceId));
-    }
+    //     System.out.println("\nTesting lookups:");
+    //     System.out.println("Vendor " + testVendorId + ": " + maps.getVendorName(testVendorId));
+    //     System.out.println("Product " + testVendorId + ":" + testDeviceId + ": " + 
+    //                       maps.getProductName(testVendorId, testDeviceId));
+    // }
 }

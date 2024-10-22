@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PCIDevice",
+            "request": "launch",
+            "mainClass": "PCIDevice",
+            "projectName": "project_c88f14f5"
+        },
+        {
+            "type": "java",
+            "name": "PCI",
+            "request": "launch",
+            "mainClass": "PCI",
+            "projectName": "project_c88f14f5"
+        },
+        {
+            "type": "java",
             "name": "CSV2Hash",
             "request": "launch",
             "mainClass": "CSV2Hash",
