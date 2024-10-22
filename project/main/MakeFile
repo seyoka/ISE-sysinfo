@@ -1,0 +1,12 @@
+JAVAC=/usr/lib/jvm/java-21-openjdk-amd64/bin/javac
+JAVA=/usr/lib/jvm/java-21-openjdk-amd64/bin/java
+JAVAFX_LIB=./javafx-sdk/lib
+MODULES=javafx.controls,javafx.fxml
+
+# Target to compile
+compile:
+    $(JAVAC) --module-path $(JAVAFX_LIB) --add-modules $(MODULES) -d out $(wildcard src/main/java/dashboard/*.java)
+
+# Target to run
+run:
+    $(JAVA) --module-path $(JAVAFX_LIB) --add-modules $(MODULES) -cp out dashboard.DashboardApp

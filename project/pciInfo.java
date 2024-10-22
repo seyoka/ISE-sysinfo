@@ -6,6 +6,9 @@
 
 public class pciInfo 
 {
+    static {
+        System.loadLibrary("sysinfo"); // This loads libsysinfo.so
+    }
     // Refresh the current values and counters - call this before other methods
     public native void read ();
 

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CSV2Hash",
+            "request": "launch",
+            "mainClass": "CSV2Hash",
+            "projectName": "project_c88f14f5"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
