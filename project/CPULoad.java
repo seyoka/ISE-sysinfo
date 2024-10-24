@@ -6,20 +6,7 @@ public class CPULoad extends CPU{
         super(cpu);
     }
 
-    private int getCpuIdle(int core){
-        return cpu.getIdleTime(core);
-    }
-
-    private int getCpuUser(int core){
-        return cpu.getUserTime(core);
-    }
-
-    private int getCpuSystem(int core){
-        return cpu.getSystemTime(core);
-    }
-
-
-    //returns the percentage of time the CPU spends being not idle
+    //returns the percentage of time a given core spends being not idle
     private float loadPercent(int core){
         int[] vals = getCoreStats(core);
 
@@ -27,6 +14,35 @@ public class CPULoad extends CPU{
         int busyLoad = vals[1] + vals[2];
 
         return ((float)busyLoad/totalLoad) * 100;
+    }
+
+    //returns percentage of the total load of a socket
+    private float totalSocketLoad(){
+        int[][] coreLoads = getSocketLoadArray();
+        int totalLoad = 0;
+        int busyLoad = 0;
+
+        //loops through each core and
+        // //adds up how much being time is spent in total and while not in idle
+        for(int[] row: coreLoads){
+            totalLoad += row[0] + row[1] + row[2];
+            busyLoad += row[1] + row[2];
+        }
+
+        return ((float)busyLoad/totalLoad) * 100;
+    }
+
+    private int[][] getSocketLoadArray(){
+        //Contains value for the idle, system and user state for each core
+        //Looks like: [(core 1)[idle, user, system],
+        //            (core 2))[idle, user, system]] and so on
+        int[][] coreLoads = new int[cores][3];
+
+        for (int i=0; i<cores; i++){
+            coreLoads[0] = getCoreStats(i);
+        }
+
+        return coreLoads;
     }
 
     //shows the load of a specified core
@@ -37,10 +53,10 @@ public class CPULoad extends CPU{
 
         List<Integer> chartValues = new ArrayList<Integer>();
 
+        //temporary amount of time
         while (count <10){
             float val = loadPercent(core);
 
-            System.out.println(chartValues);
             if(chartValues.size() == 5){
                 chartValues.removeFirst();
             }
@@ -55,9 +71,9 @@ public class CPULoad extends CPU{
         cpu.read(1);
 
         //gets Idle time, User time and system Time
-        int[] coreTimes = {getCpuIdle(core),
-                getCpuUser(core),
-                getCpuSystem(core)};
+        int[] coreTimes = {cpu.getIdleTime(core),
+                cpu.getUserTime(core),
+                cpu.getSystemTime(core)};
 
         return coreTimes;
     }
