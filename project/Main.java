@@ -9,10 +9,9 @@ public class Main {
         cpu.read(0);
         String name = cpu.getModel();
 
-        CPU help = new CPU(cpu, cpu.coresPerSocket(), name);
+        CPUCache help = new CPUCache(cpu);
 
         System.out.println("core 1");
-        help.buildLoadValues(0);
 
         help.getAllCache();
         int i = 0;
