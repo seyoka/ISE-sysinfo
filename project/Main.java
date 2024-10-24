@@ -8,7 +8,10 @@ public class Main {
         cpuInfo cpu = new cpuInfo();
         cpu.read(0);
 
-        //for more cores, put in for loop
-        CPUChart.lineChartValues(cpu);
+        CPU help = new CPU(cpu, cpu.coresPerSocket());
+        help.buildChartValues();
+        int i = 0;
+        help.getAllCache();
+
     }
 }
