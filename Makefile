@@ -17,7 +17,7 @@ $(MYPROJECT).class: $(MYPROJECT).java $(LIBSYSINFOSO_PATH)
 	javac -cp project:$(LIBSYSINFO_PATH):$(JFREECHART_JAR):$(JCOMMON_JAR) $< -d project
 
 $(HEADERS): %.h: %.java
-	javac -h $<
+	javac -h project $<
 
 $(LIBSYSINFOSO_PATH):
 	$(MAKE) -C LIBSYSINFO_PATH
