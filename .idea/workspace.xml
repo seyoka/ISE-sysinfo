@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="SWING WORKS!!!!!!!!!">
+      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPU.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPU.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPULoadChart.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPULoadChart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPULoadChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPULoadChart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Yasmin2k3&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Yasmin2k3/Block1Project/&quot;,
+    &quot;accountId&quot;: &quot;e35e5112-aa04-4616-bb96-b72180a2b787&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nu1bRaZ9tt7M1oKKKzqqyFQHLm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CPULoadChart.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Makefile Target.Makefile.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Shell Script.run.sh.executor": "Run",
+    "git-widget-placeholder": "yaz",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/vboxuser/IdeaProjects/Block1Project/lib/jcommon-1.0.23.jar",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="" />
+      <created>1729808218976</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729808218976</updated>
+    </task>
+    <task id="LOCAL-00001" summary="made some subclasses for CPU">
+      <option name="closed" value="true" />
+      <created>1729809930387</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729809930387</updated>
+    </task>
+    <task id="LOCAL-00002" summary="made some subclasses for CPU">
+      <option name="closed" value="true" />
+      <created>1729809955760</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729809955760</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added load percent for whole CPU">
+      <option name="closed" value="true" />
+      <created>1729812802794</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729812802794</updated>
+    </task>
+    <task id="LOCAL-00004" summary="SWING WORKS!!!!!!!!!">
+      <option name="closed" value="true" />
+      <created>1729873852215</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729873852215</updated>
+    </task>
+    <task id="LOCAL-00005" summary="SWING WORKS!!!!!!!!!">
+      <option name="closed" value="true" />
+      <created>1729874906918</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729874906918</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="made some subclasses for CPU" />
+    <MESSAGE value="added load percent for whole CPU" />
+    <MESSAGE value="SWING WORKS!!!!!!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="SWING WORKS!!!!!!!!!" />
+  </component>
+</project>
