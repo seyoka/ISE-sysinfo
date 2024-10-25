@@ -1,52 +1,82 @@
+//To make the area chart update in real time, you can use a timer to periodically
+//generate new data points and update the dataset.
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CPULoadChart extends JFrame {
 
+    private XYSeries series;
+
     public CPULoadChart(String title) {
         super(title);
-
-        // Create dataset
+        CPU cpu = new CPU();
         XYSeriesCollection dataset = createDataset();
-
-        // Create chart
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                "CPU Load Over Time",
-                "Time (seconds)",
-                "CPU Load (%)",
-                dataset,
-                org.jfree.chart.plot.PlotOrientation.VERTICAL, // Orientation
-                true,                  // Include legend
-                true,                  // Tooltips
-                false                  // URLs
-        );
-
-        // Create Panel
+        JFreeChart chart = createChart(dataset);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
         setContentPane(chartPanel);
+        goTimer(cpu);
+
+    }
+
+//use Dynamic time series instead?
+    private void goTimer(CPU cpu){
+        //updates every 1 second
+        Timer timer = new Timer(100, new ActionListener() {
+            private int time = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Update data point
+                series.add(time++, cpu.totalSocketLoad()); // Simulated Load data
+                // Limits the number displayed
+                if (series.getItemCount() > 20) {
+                    series.remove(0); // Remove the oldest point
+                }
+            }
+        });
+        timer.start();
     }
 
     private XYSeriesCollection createDataset() {
-        XYSeries series1 = new XYSeries("CPU Load 1");
-        XYSeries series2 = new XYSeries("CPU Load 2");
-
-        // Adding some sample data
-        for (int i = 0; i <= 10; i++) {
-            series1.add(i, Math.random() * 100); // Random data for series 1
-            series2.add(i, Math.random() * 100); // Random data for series 2
-        }
-
+        series = new XYSeries("Load");
         XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(series1);
-        dataset.addSeries(series2);
+        dataset.addSeries(series);
         return dataset;
+    }
+
+
+    private JFreeChart createChart(XYSeriesCollection dataset) {
+        JFreeChart chart = ChartFactory.createXYAreaChart(
+                "CPU Load Chart",
+                "Time",
+                "Load (%)",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        // Customize the chart (optional)
+        XYPlot plot = chart.getXYPlot();
+        plot.setDomainPannable(true);
+        plot.setRangePannable(false);
+        plot.setDomainZeroBaselineVisible(true);
+        plot.setRangeZeroBaselineVisible(false);
+
+        return chart;
     }
 
     public static void main(String[] args) {

@@ -7,8 +7,8 @@ public class CPU{
     public int sockets;
     cpuInfo cpu;
 
-    public CPU(cpuInfo cpu){
-        this.cpu = cpu;
+    public CPU(){
+        this.cpu = new cpuInfo();
         this.cores = cpu.coresPerSocket();
         this.sockets = cpu.socketCount();
     }
@@ -47,8 +47,8 @@ public class CPU{
         return ((float)busyLoad/totalLoad) * 100;
     }
 
-    //returns percentage of the total load of a socket
-    private float totalSocketLoad(){
+    //returns percentage of the total load of a socket - might not use
+    public float totalSocketLoad(){
         int[][] coreLoads = getSocketLoadArray();
         int totalLoad = 0;
         int busyLoad = 0;
@@ -76,17 +76,16 @@ public class CPU{
         return coreLoads;
     }
 
-    //shows the load of a specified core
-    public void buildLoadValues(int type){
+    //shows the load of the socket
+    public List<Integer> buildLoadValues(boolean onPage){
         //temporary timer
         int count = 0;
-        int core = 0; //change to be mutable
 
         List<Integer> chartValues = new ArrayList<Integer>();
 
         //temporary amount of time
         while (count <10){
-            float val = loadPercent(core);
+            float val = totalSocketLoad();
 
             if(chartValues.size() == 5){
                 chartValues.removeFirst();
@@ -96,6 +95,8 @@ public class CPU{
             chartValues.add(Math.round(val));
             count++;
         }
+
+        return chartValues;
     }
 
     private int[] getCoreStats(int core){
