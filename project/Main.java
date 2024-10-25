@@ -7,10 +7,10 @@ public class Main {
         System.loadLibrary("sysinfo");
 
         cpuInfo cpu = new cpuInfo();
-        cpu.read(0);
-        CPU help = new CPU();
+        cpu.read();
 
-        //invoke later makes sure that everything runs correctly and smoothly on swing U
+
+        //invoke later makes sure that everything runs correctly and smoothly on swing UI
         SwingUtilities.invokeLater(() -> {
             CPULoadChart example = new CPULoadChart("CPU Load Area Chart");
             example.setSize(800, 600);

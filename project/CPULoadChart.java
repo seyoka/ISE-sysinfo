@@ -33,7 +33,7 @@ public class CPULoadChart extends JFrame {
 //use Dynamic time series instead?
     private void goTimer(CPU cpu){
         //updates every 1 second
-        Timer timer = new Timer(1, new ActionListener() {
+        Timer timer = new Timer(0, new ActionListener() {
             private int time = 0;
 
             @Override

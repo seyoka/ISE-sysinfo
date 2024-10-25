@@ -76,29 +76,6 @@ public class CPU{
         return coreLoads;
     }
 
-    //shows the load of the socket
-    public List<Integer> buildLoadValues(boolean onPage){
-        //temporary timer
-        int count = 0;
-
-        List<Integer> chartValues = new ArrayList<Integer>();
-
-        //temporary amount of time
-        while (count <10){
-            float val = totalSocketLoad();
-
-            if(chartValues.size() == 5){
-                chartValues.removeFirst();
-            }
-
-            //originally a float, rounded to be an int
-            chartValues.add(Math.round(val));
-            count++;
-        }
-
-        return chartValues;
-    }
-
     private int[] getCoreStats(int core){
         cpu.read(1);
 
