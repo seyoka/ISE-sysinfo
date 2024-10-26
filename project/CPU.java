@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,24 +14,19 @@ public class CPU{
         this.sockets = cpu.socketCount();
     }
 
-    //model name of the cpu
-    public String getCPUModel(){
-        return cpu.getModel();
-    }
-
         //gets all types of cache and puts it into a key/value storage
-    public HashMap<String, Integer> getAllCache() {
-        HashMap<String, Integer> caches = new HashMap<String, Integer>();
+    public double[][] getAllCache() {
+        double[][] caches = new double[cores][4];
         String str;
 
-        for (int core = 0; core < cores; core++) {
-            str = "core " + Integer.toString(core) + " l1d cache";
-            caches.put(str, cpu.l1dCacheSize());
-            str = "core " + core + " l1i cache";
-            caches.put(str, cpu.l1iCacheSize());
+        //looping through cores and getting the different cache for each
+        for (int core=0; core<caches.length; core++){
+            caches[core][0] = cpu.l1dCacheSize();
+            caches[core][1] = cpu.l1iCacheSize();
+            caches[core][2] = cpu.l2CacheSize();
+            caches[core][3] = cpu.l3CacheSize();
+
         }
-        caches.put("l2 cache: ", cpu.l2CacheSize());
-        caches.put("l3 cache: ", cpu.l3CacheSize());
 
         return caches;
     }
