@@ -14,32 +14,36 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CPULoadChart extends JFrame {
+public class CPULoadChart extends JPanel {
 
     private XYSeries series;
 
-    public CPULoadChart(String title) {
-        super(title);
+    public CPULoadChart() {
+        setLayout(new BorderLayout());
+
+        // Initialize CPU and dataset
         CPU cpu = new CPU();
         XYSeriesCollection dataset = createDataset();
         JFreeChart chart = createChart(dataset);
+
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
-        setContentPane(chartPanel);
+        add(chartPanel, BorderLayout.CENTER);
+
+        // Refreshes the line chart to update
         goTimer(cpu);
 
     }
 
-//use Dynamic time series instead?
     private void goTimer(CPU cpu){
         //updates every 1 second
-        Timer timer = new Timer(0, new ActionListener() {
+        Timer timer = new Timer(16, new ActionListener() {
             private int time = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Update data point
-                series.add(time++, cpu.totalSocketLoad()); // Simulated Load data
+                series.add(time++, cpu.totalSocketLoad());
                 // Limits the number displayed
                 if (series.getItemCount() > 20) {
                     series.remove(0); // Remove the oldest point
@@ -77,9 +81,5 @@ public class CPULoadChart extends JFrame {
         plot.setRangeZeroBaselineVisible(false);
 
         return chart;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

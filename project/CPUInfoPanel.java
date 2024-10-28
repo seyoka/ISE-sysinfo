@@ -17,6 +17,8 @@ public class CPUInfoPanel extends JPanel {
         containerPanel.add(createTextPanel());
         containerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         containerPanel.add(createCpuInfoPanel());
+        containerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        containerPanel.add(createCpuLoadPanel());
 
         add(containerPanel, BorderLayout.NORTH);
 
@@ -46,6 +48,16 @@ public class CPUInfoPanel extends JPanel {
 
         CPUCachePage cpuCache = new CPUCachePage();
         panel.add(cpuCache);
+
+        return panel;
+    }
+
+    private JPanel createCpuLoadPanel(){
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panel.setBackground(new Color(41, 41, 66));
+
+        CPULoadChart cpuLoad = new CPULoadChart();
+        panel.add(cpuLoad);
 
         return panel;
     }
