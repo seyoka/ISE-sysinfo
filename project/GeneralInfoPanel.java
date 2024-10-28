@@ -6,6 +6,11 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import com.sun.jna.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+
 
 public class GeneralInfoPanel extends JPanel {
     private JPanel systemInfoPanel;
@@ -16,31 +21,59 @@ public class GeneralInfoPanel extends JPanel {
     private JLabel cpuLabel;
     private JLabel memoryLabel;
     private JLabel powerLabel;
+    private RAMInfoPanel ramInfoPanel;
+    private GPUInfoPanel gpuInfoPanel;
 
     public GeneralInfoPanel() {
         setLayout(new BorderLayout());
         setBackground(MAIN_CONTENT_COLOR);
-
-        // Create container panel with vertical BoxLayout
-        JPanel containerPanel = new JPanel();
-        containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
-        containerPanel.setBackground(MAIN_CONTENT_COLOR);
-
-        // Create and add system info panel
+    
+        // Create main scroll pane container
+        JPanel mainContainer = new JPanel(new GridBagLayout());
+        mainContainer.setBackground(MAIN_CONTENT_COLOR);
+        GridBagConstraints gbc = new GridBagConstraints();
+    
+        // Configure base constraints
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+    
+        // Add system info panel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
         systemInfoPanel = createSystemInfoPanel();
-        containerPanel.add(systemInfoPanel);
-
-        // Add some spacing
-        containerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-
-        // Create and add cache visualization panel
+        mainContainer.add(systemInfoPanel, gbc);
+    
+        // Add RAM info panel (left side)
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        ramInfoPanel = new RAMInfoPanel();
+        mainContainer.add(ramInfoPanel, gbc);
+    
+        // Add GPU info panel (right side)
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gpuInfoPanel = new GPUInfoPanel();
+        mainContainer.add(gpuInfoPanel, gbc);
+    
+        // Add cache visualization panel
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
         cachePanel = new CacheSpeedPanel();
-        cachePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 300));
-        containerPanel.add(cachePanel);
-
-        // Add container to main panel
-        add(containerPanel, BorderLayout.NORTH);
-
+        mainContainer.add(cachePanel, gbc);
+    
+        // Add everything to a scroll pane
+        JScrollPane scrollPane = new JScrollPane(mainContainer);
+        scrollPane.setBackground(MAIN_CONTENT_COLOR);
+        scrollPane.getViewport().setBackground(MAIN_CONTENT_COLOR);
+        scrollPane.setBorder(null);
+        add(scrollPane, BorderLayout.CENTER);
+    
         // Start timer to update system info
         Timer timer = new Timer(2000, e -> updateSystemInfo());
         timer.start();
@@ -178,6 +211,12 @@ public class GeneralInfoPanel extends JPanel {
     public void cleanup() {
         if (cachePanel != null) {
             cachePanel.stopAnimation();
+        }
+        if (ramInfoPanel != null) {
+            ramInfoPanel.stopUpdates();
+        }
+        if (gpuInfoPanel != null) {
+            gpuInfoPanel.stopUpdates();
         }
     }
 }
