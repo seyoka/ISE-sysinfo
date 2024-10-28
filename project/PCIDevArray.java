@@ -109,7 +109,7 @@ public class PCIDevArray {
             System.out.println("Bus: " + device.getBus());
             System.out.println("Vendor: " + device.getVendor());
             System.out.println("Product: " + device.getProduct());
-            System.out.println("Functions: " + device.getFunctionCount());  
+            System.out.println("Functions: " + device.getFunctionCount());
             System.out.println("------------------------");
         }
     }

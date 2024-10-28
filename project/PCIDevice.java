@@ -7,10 +7,10 @@ public class PCIDevice{
 
 
     public PCIDevice(int bus, String vendor, String product, int  functions){
-        this.bus = bus; 
+        this.bus = bus + 1; 
         this.vendor = vendor;
         this.product = product; 
-        this.functions = functionCount; 
+        this.functions = functionCount + 1; 
     }
 
 
