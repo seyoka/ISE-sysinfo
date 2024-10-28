@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: eu.hansolo:toolbox:21.0.5" type="java-imported" external-system-id="Maven">
+    <properties groupId="eu.hansolo" artifactId="toolbox" version="21.0.5" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/toolbox/21.0.5/toolbox-21.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/toolbox/21.0.5/toolbox-21.0.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/toolbox/21.0.5/toolbox-21.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

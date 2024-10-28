@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.openjfx:javafx-web:linux:21" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.openjfx" artifactId="javafx-web" version="21" classifier="linux" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-web/21/javafx-web-21-linux.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-web/21/javafx-web-21-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-web/21/javafx-web-21-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="updating delay for timer">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPU.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPU.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPU.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPU.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUCache.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPU.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPU.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPULoadChart$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/cpuInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/run.sh" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +43,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Yasmin2k3/Block1Project/&quot;,
-    &quot;accountId&quot;: &quot;e35e5112-aa04-4616-bb96-b72180a2b787&quot;
+    &quot;url&quot;: &quot;https://github.com/Yasmin2k3/Block1Project&quot;,
+    &quot;accountId&quot;: &quot;b67e3701-4d1d-416b-b33e-3f9f2e1a577c&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -74,7 +69,7 @@
     &quot;git-widget-placeholder&quot;: &quot;yaz&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/vboxuser/IdeaProjects/BlockProject&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;

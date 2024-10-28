@@ -14,19 +14,15 @@ public class CPU{
         this.sockets = cpu.socketCount();
     }
 
-        //gets all types of cache and puts it into a key/value storage
-    public double[][] getAllCache() {
-        double[][] caches = new double[cores][4];
-        String str;
+    //gets all types of cache
+    public HashMap<String, Integer> getAllCache() {
+        cpu.read(1);
 
-        //looping through cores and getting the different cache for each
-        for (int core=0; core<caches.length; core++){
-            caches[core][0] = cpu.l1dCacheSize();
-            caches[core][1] = cpu.l1iCacheSize();
-            caches[core][2] = cpu.l2CacheSize();
-            caches[core][3] = cpu.l3CacheSize();
-
-        }
+        HashMap<String, Integer> caches = new HashMap<>();
+        caches.put("L1i", cpu.l1iCacheSize());
+        caches.put("L1d", cpu.l1dCacheSize());
+        caches.put("L2", cpu.l2CacheSize());
+        caches.put("L3", cpu.l3CacheSize());
 
         return caches;
     }
@@ -50,7 +46,7 @@ public class CPU{
         int busyLoad = 0;
 
         //loops through each core and
-        // //adds up how much being time is spent in total and while not in idle
+        // adds up how much time is spent in total, and while not in idle
         for(int[] row: coreLoads){
             totalLoad += row[0] + row[1] + row[2];
             busyLoad += row[1] + row[2];

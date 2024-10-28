@@ -21,7 +21,3 @@ $(HEADERS): %.h: %.java
 
 $(LIBSYSINFOSO_PATH):
 	$(MAKE) -C LIBSYSINFO_PATH
-
-# Clean up compiled files
-clean:
-	rm -rf project/*.class $(LIBSYSINFOSO_PATH)

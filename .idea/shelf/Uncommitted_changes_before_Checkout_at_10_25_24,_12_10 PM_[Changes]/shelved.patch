@@ -1,0 +1,75 @@
+Index: src/run.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#!/bin/bash\njava -Djava.library.path=libsysinfo test\n
+===================================================================
+diff --git a/src/run.sh b/src/run.sh
+--- a/src/run.sh	(revision 83f73517a5ba414af8aad070d6bbda94c37ac614)
++++ b/src/run.sh	(date 1729778633892)
+@@ -1,2 +1,2 @@
+ #!/bin/bash
+-java -Djava.library.path=libsysinfo test
++java -Djava.library.path=libsysinfo template
+Index: src/Makefile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.PHONY: libsysinfo/libsysinfo.so\n\nMODULES=sysInfo cpuInfo pciInfo usbInfo\nHEADERS=$(MODULES:%=%.h)\n\nLIBSYSINFO_PATH=libsysinfo\nLIBSYSINFOSO_PATH=$(LIBSYSINFO_PATH)/libsysinfo.so\nMYPROJECT=test\n\nall: $(HEADERS) $(MYPROJECT).class $(LIBSYSINFOSO_PATH)\n\n$(MYPROJECT).class: $(MYPROJECT).java $(LIBSYSINFOSO_PATH)\n\tjavac $<\n\n$(HEADERS): %.h: %.java\n\tjavac -h $<\n\n$(LIBSYSINFOSO_PATH):\n\t$(MAKE) -C $(LIBSYSINFO_PATH)\n\n
+===================================================================
+diff --git a/src/Makefile b/src/Makefile
+--- a/src/Makefile	(revision 83f73517a5ba414af8aad070d6bbda94c37ac614)
++++ b/src/Makefile	(date 1729778633902)
+@@ -5,7 +5,7 @@
+ 
+ LIBSYSINFO_PATH=libsysinfo
+ LIBSYSINFOSO_PATH=$(LIBSYSINFO_PATH)/libsysinfo.so
+-MYPROJECT=test
++MYPROJECT=template
+ 
+ all: $(HEADERS) $(MYPROJECT).class $(LIBSYSINFOSO_PATH)
+ 
+Index: src/template.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import com.CPUChart;\n\npublic class template\n{\n    /*\n    public static void showPCI()\n    {\n        pciInfo pci = new pciInfo();\n        pci.read();\n\n        System.out.println(\"\\nThis machine has \"+\n            pci.busCount()+\" PCI buses \");\n\n        // Iterate through each bus\n        for (int i = 0; i < pci.busCount(); i++) {\n            System.out.println(\"Bus \"+i+\" has \"+\n                pci.deviceCount(i)+\" devices\");\n\n            // Iterate for up to 32 devices.  Not every device slot may be populated\n            // so ensure at least one function before printing device information\n            for (int j = 0; j < 32; j++) {\n                if (pci.functionCount (i, j) > 0) {\n                    System.out.println(\"Bus \"+i+\" device \"+j+\" has \"+\n                        pci.functionCount(i, j)+\" functions\");\n\n                    // Iterate through up to 8 functions per device.\n                    for (int k = 0; k < 8; k++) {\n                        if (pci.functionPresent (i, j, k) > 0) {\n                            System.out.println(\"Bus \"+i+\" device \"+j+\" function \"+k+\n                                \" has vendor \"+String.format(\"0x%04X\", pci.vendorID(i,j,k))+\n                                \" and product \"+String.format(\"0x%04X\", pci.productID(i,j,k)));\n                        }\n                    }\n                }\n            }\n        }\n    }\n\n    public static void showUSB()\n    {\n        usbInfo usb = new usbInfo();\n        usb.read();\n        System.out.println(\"\\nThis machine has \"+\n            usb.busCount()+\" USB buses \");\n\n        // Iterate through all of the USB buses\n        for (int i = 1; i <= usb.busCount(); i++) {\n            System.out.println(\"Bus \"+i+\" has \"+\n                usb.deviceCount(i)+\" devices\");\n\n            // Iterate through all of the USB devices on the bus\n            for (int j = 1; j <= usb.deviceCount(i); j++) {\n                System.out.println(\"Bus \"+i+\" device \"+j+\n                    \" has vendor \"+String.format(\"0x%04X\", usb.vendorID(i,j))+\n                    \" and product \"+String.format(\"0x%04X\", usb.productID(i,j)));\n            }\n        }\n    }\n\n    public static void showCPU()\n    {\n        cpuInfo cpu = new cpuInfo();\n        cpu.read(0);\n\n        System.out.println(\"cpu idle time: \" + cpu.getIdleTime(1));\n\n        // Show CPU model, CPU sockets and cores per socket\n        System.out.println(\"CPU \" + cpu.getModel() + \" has \"+\n            cpu.socketCount() + \" sockets each with \"+\n            cpu.coresPerSocket() + \" cores\");\n\n        // Show sizes of L1,L2 and L3 cache\n        System.out.println(\"l1d=\"+cpu.l1dCacheSize()+\n            \", l1i=\"+cpu.l1iCacheSize()+\n            \", l2=\"+cpu.l2CacheSize()+\n            \", l3=\"+cpu.l3CacheSize());\n\n        // Sleep for 1 second and display the idle time percentage for\n        // core 1.  This assumes 10Hz so in one second we have 100\n        cpu.read(1);\n        System.out.println(\"core 1 idle=\"+cpu.getIdleTime(1)+\"%\");\n    }\n     */\n\n    public static void main(String[] args) {\n        CPUChart work = new CPUChart();\n\n        work.buildBusyLineChart(5);\n        //System.loadLibrary(\"sysinfo\");\n        //sysInfo info = new sysInfo();\n        //cpuInfo cpu = new cpuInfo();\n        //cpu.read(0);\n\n        //showCPU();\n        //showPCI();\n        //showUSB();\n    }\n}\n\n
+===================================================================
+diff --git a/src/template.java b/src/template.java
+--- a/src/template.java	(revision 83f73517a5ba414af8aad070d6bbda94c37ac614)
++++ b/src/template.java	(date 1729778662704)
+@@ -1,8 +1,5 @@
+-import com.CPUChart;
+-
+ public class template
+ {
+-    /*
+     public static void showPCI()
+     {
+         pciInfo pci = new pciInfo();
+@@ -80,20 +77,17 @@
+         cpu.read(1);
+         System.out.println("core 1 idle="+cpu.getIdleTime(1)+"%");
+     }
+-     */
++
+ 
+     public static void main(String[] args) {
+-        CPUChart work = new CPUChart();
++        System.loadLibrary("sysinfo");
++        sysInfo info = new sysInfo();
++        cpuInfo cpu = new cpuInfo();
++        cpu.read(0);
+ 
+-        work.buildBusyLineChart(5);
+-        //System.loadLibrary("sysinfo");
+-        //sysInfo info = new sysInfo();
+-        //cpuInfo cpu = new cpuInfo();
+-        //cpu.read(0);
+-
+-        //showCPU();
+-        //showPCI();
+-        //showUSB();
++        showCPU();
++        showPCI();
++        showUSB();
+     }
+ }
+ 

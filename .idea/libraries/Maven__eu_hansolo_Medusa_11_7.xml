@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: eu.hansolo:Medusa:11.7" type="java-imported" external-system-id="Maven">
+    <properties groupId="eu.hansolo" artifactId="Medusa" version="11.7" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/Medusa/11.7/Medusa-11.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/Medusa/11.7/Medusa-11.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/Medusa/11.7/Medusa-11.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
