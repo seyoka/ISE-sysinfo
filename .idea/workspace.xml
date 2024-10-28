@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="testing swing cpu panel">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPU.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPU.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUCachePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUCachePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUCachePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUCachePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUInfoPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUInfoPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUInfoPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/DashboardApp$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/DashboardApp$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/DashboardApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/DashboardApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/DashboardApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/DashboardApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/Main.java" beforeDir="false" />
-    </list>
+    <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="added title to cpu panel" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +56,7 @@
     "Makefile Target.Makefile.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Shell Script.run.sh.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "yasmin",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/vboxuser/IdeaProjects/sysinfo",
     "project.structure.last.edited": "Artifacts",
@@ -153,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730106774694</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added title to cpu panel">
+      <option name="closed" value="true" />
+      <created>1730141285753</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730141285754</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +170,7 @@
     <MESSAGE value="SWING WORKS!!!!!!!!!" />
     <MESSAGE value="updating delay for timer" />
     <MESSAGE value="testing swing cpu panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing swing cpu panel" />
+    <MESSAGE value="added title to cpu panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="added title to cpu panel" />
   </component>
 </project>
