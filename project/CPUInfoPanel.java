@@ -20,18 +20,19 @@ public class CPUInfoPanel extends JPanel {
         containerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         containerPanel.add(createCpuLoadPanel());
 
-        JScrollPane scrollFrame = new JScrollPane();
-        containerPanel.setAutoscrolls(true);
-        scrollFrame.setPreferredSize(new Dimension(600, 100));
-
         add(containerPanel, BorderLayout.NORTH);
 
     }
 
-    private JLabel createStyledLabel(String text) {
+    private JLabel createStyledLabel(Boolean title, String text) {
         JLabel label = new JLabel(text);
         label.setForeground(Color.WHITE);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        if (title){
+            label.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        }
+        else{
+            label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        }
         return label;
     }
 
@@ -41,7 +42,7 @@ public class CPUInfoPanel extends JPanel {
 
         cpuInfo cpuName = new cpuInfo();
         cpuName.read();
-        panel.add(createStyledLabel(cpuName.getModel()));
+        panel.add(createStyledLabel(true, cpuName.getModel()));
 
         return panel;
     }

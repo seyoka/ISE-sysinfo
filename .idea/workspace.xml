@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="added cpu load to cpu panel (this makes things slow though)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPUInfoPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUInfoPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/CPUInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUInfoPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPULoadChart.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPULoadChart.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730142298194</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added cpu load to cpu panel (this makes things slow though)">
+      <option name="closed" value="true" />
+      <created>1730143485377</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730143485377</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
