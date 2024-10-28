@@ -22,12 +22,12 @@ public class CPUInfoPanel extends JPanel {
 
     private JPanel createCpuInfoPanel(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panel.setBackground(new Color(41, 41, 66));
+        panel.setBackground(new Color(41, 41, 66)); // Set a color that matches the desired look
+        panel.setOpaque(false); // Ensure the panel is not opaque
 
-        CPU cpuInfo = new CPU();
-        CPUCachePage cpuCache = new CPUCachePage("CPU Load Area Chart");
+        CPUCachePage cpuCache = new CPUCachePage();
+        panel.add(cpuCache);
 
         return panel;
     }
-
 }

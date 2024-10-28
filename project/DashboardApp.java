@@ -46,8 +46,8 @@ public class DashboardApp {
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
-        mainContent.add(new CPUInfoPanel(), "General Info");
-        mainContent.add(createContentPanel("CPU Info: Placeholder for CPU Info"), "CPU Info");
+        mainContent.add(createContentPanel("General Info: Placeholder for CPU Info"), "General Info");
+        mainContent.add(new CPUInfoPanel(), "CPU Info");
         mainContent.add(createContentPanel("Memory Info: Placeholder for Memory Info"), "Memory Info");
         mainContent.add(createContentPanel("Bus Info: Placeholder for Bus Info"), "Bus Info");
 
@@ -69,6 +69,7 @@ public class DashboardApp {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text) {
@@ -97,6 +98,7 @@ public class DashboardApp {
                 g2.dispose();
             }
         };
+//
 
         button.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         button.setForeground(Color.WHITE);
