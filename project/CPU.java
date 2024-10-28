@@ -10,6 +10,7 @@ public class CPU{
 
     public CPU(){
         this.cpu = new cpuInfo();
+        cpu.read(0);
         this.cores = cpu.coresPerSocket();
         this.sockets = cpu.socketCount();
     }

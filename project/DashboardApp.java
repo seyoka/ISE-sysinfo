@@ -36,7 +36,6 @@ public class DashboardApp {
         sidebar.setBackground(SIDEBAR_COLOR);
         sidebar.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         sidebar.setPreferredSize(new Dimension(200, 600));
-        //
 
         // Initialize CardLayout and mainContent FIRST
         cardLayout = new CardLayout();
@@ -125,8 +124,11 @@ public class DashboardApp {
         panel.add(label);
         return panel;
     }
+    //
 
     public static void main(String[] args) {
+        System.loadLibrary("sysinfo");
+
         SwingUtilities.invokeLater(() -> {
             new DashboardApp();
         });
