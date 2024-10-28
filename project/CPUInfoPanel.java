@@ -20,6 +20,10 @@ public class CPUInfoPanel extends JPanel {
         containerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         containerPanel.add(createCpuLoadPanel());
 
+        JScrollPane scrollFrame = new JScrollPane();
+        containerPanel.setAutoscrolls(true);
+        scrollFrame.setPreferredSize(new Dimension(600, 100));
+
         add(containerPanel, BorderLayout.NORTH);
 
     }
