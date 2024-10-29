@@ -23,15 +23,10 @@ public class CPUInfoPanel extends JPanel {
 
     }
 
-    private JLabel createStyledLabel(Boolean title, String text) {
+    private JLabel createStyledLabel(String text) {
         JLabel label = new JLabel(text);
         label.setForeground(Color.WHITE);
-        if (title){
-            label.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-        }
-        else{
-            label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        }
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 20));
         return label;
     }
 
@@ -41,7 +36,7 @@ public class CPUInfoPanel extends JPanel {
 
         cpuInfo cpuName = new cpuInfo();
         cpuName.read();
-        panel.add(createStyledLabel(true, cpuName.getModel()));
+        panel.add(createStyledLabel(cpuName.getModel()));
 
         return panel;
     }
