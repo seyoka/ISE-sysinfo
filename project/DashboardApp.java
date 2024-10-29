@@ -47,11 +47,18 @@ public class DashboardApp {
         ));
 
         mainContent.add(new GeneralInfoPanel(), "General Info");
-        mainContent.add(createContentPanel("CPU Info: Placeholder for CPU Info"), "CPU Info");
-        mainContent.add(createContentPanel("Memory Info: Placeholder for Memory Info"), "Memory Info");
+
+        CPUInfoPanel cpuInfoPanel = new CPUInfoPanel();
+        mainContent.add(cpuInfoPanel, "CPU Info"); 
+
+        DiskInfoPanel diskInfoPanel = new DiskInfoPanel();
+        mainContent.add(diskInfoPanel, "Memory Info");
+
         PCITablePanel pciPanel = new PCITablePanel();
         mainContent.add(pciPanel, "PCI Info");
-        mainContent.add(createContentPanel("Bus Info: Placeholder for Bus Info"), "Bus Info");
+
+        USBInfoPanel usbPanel = new USBInfoPanel(); 
+        mainContent.add(usbPanel, "Bus Info");
 
         // Create buttons
         String[] buttonLabels = {"General Info", "CPU Info", "Memory Info", "PCI Info", "Bus Info"};
