@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class CPU{
     public int cores;
@@ -16,10 +13,10 @@ public class CPU{
     }
 
     //gets all types of cache
-    public HashMap<String, Integer> getAllCache() {
+    public LinkedHashMap<String, Integer> getAllCache() {
         cpu.read(1);
 
-        HashMap<String, Integer> caches = new HashMap<>();
+        LinkedHashMap<String, Integer> caches = new LinkedHashMap<>();
         caches.put("L1i", cpu.l1iCacheSize());
         caches.put("L1d", cpu.l1dCacheSize());
         caches.put("L2", cpu.l2CacheSize());

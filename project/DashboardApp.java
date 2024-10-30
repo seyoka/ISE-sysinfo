@@ -18,6 +18,7 @@ public class DashboardApp {
         try {
             // Set system look and feel
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //
         } catch (Exception e) {
             e.printStackTrace();
         }
