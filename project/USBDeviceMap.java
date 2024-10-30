@@ -7,7 +7,7 @@ public class USBDeviceMap {
     private static final Map<String, String> deviceClassMap = new HashMap<>();
     
     static {
-        // Initialize device classes
+          
         deviceClassMap.put("00", "Per Interface");
         deviceClassMap.put("01", "Audio");
         deviceClassMap.put("02", "Communications and CDC Control");
@@ -31,7 +31,7 @@ public class USBDeviceMap {
         deviceClassMap.put("FE", "Application Specific");
         deviceClassMap.put("FF", "Vendor Specific");
 
-        // Load USB IDs from file
+          
         loadUSBIds();
     }
 
@@ -47,7 +47,7 @@ public class USBDeviceMap {
                     continue;
                 }
 
-                // Vendor line (no tabs)
+                  
                 if (!line.startsWith("\t")) {
                     String[] parts = line.split("\\s+", 2);
                     if (parts.length == 2) {

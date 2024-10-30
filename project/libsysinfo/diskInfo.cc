@@ -73,9 +73,9 @@ void DiskInfo::_parseDisk (char buffer[])
     long available;
     stream >> name >> total >> used >> available;
 
-    // cout<<"disk="<<name<<", total="<<total<<", used="<<used<<", avail="<<available<<endl;
+      
 
-    // Ignore the header line
+      
     if (name == "Filesystem")
         return;
 
@@ -84,8 +84,8 @@ void DiskInfo::_parseDisk (char buffer[])
     _disk[_diskCount].used = used;
     _disk[_diskCount].available = available;
     _diskCount++;
-    // if (disk > _diskCount)
-    //     _diskCount = disk;
+      
+      
 }
 
 void DiskInfo::read()

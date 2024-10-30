@@ -18,7 +18,7 @@ public class CPULoadChart extends JPanel {
     public CPULoadChart() {
         setLayout(new BorderLayout());
 
-        // Initialize CPU and dataset
+          
         CPU cpu = new CPU();
         XYSeriesCollection dataset = createDataset();
         JFreeChart chart = createChart(dataset);
@@ -27,23 +27,23 @@ public class CPULoadChart extends JPanel {
         chartPanel.setPreferredSize(new Dimension(800, 600));
         add(chartPanel, BorderLayout.CENTER);
 
-        // Refreshes the line chart to update
+          
         goTimer(cpu);
 
     }
 
     private void goTimer(CPU cpu){
-        //updates every 1 second
+          
         Timer timer = new Timer(16, new ActionListener() {
             private int time = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Update data point
+                  
                 series.add(time++, cpu.totalSocketLoad());
-                // Limits the number displayed
+                  
                 if (series.getItemCount() > 20) {
-                    series.remove(0); // Remove the oldest point
+                    series.remove(0);   
                 }
             }
         });
@@ -70,7 +70,7 @@ public class CPULoadChart extends JPanel {
                 false
         );
 
-        // Customize the chart (optional)
+          
         XYPlot plot = chart.getXYPlot();
         plot.setDomainPannable(true);
         plot.setRangePannable(false);

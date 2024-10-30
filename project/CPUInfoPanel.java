@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class CPUInfoPanel extends JPanel {
     private final Color MAIN_CONTENT_COLOR = new Color(47, 47, 68);
-    private cpuInfo cpu; // Make it a class member
+    private cpuInfo cpu;   
 
     static {
         try {
@@ -18,7 +18,7 @@ public class CPUInfoPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(MAIN_CONTENT_COLOR);
 
-        // Initialize CPU info once
+          
         try {
             cpu = new cpuInfo();
         } catch (UnsatisfiedLinkError e) {

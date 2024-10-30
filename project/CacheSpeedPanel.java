@@ -13,10 +13,10 @@ public class CacheSpeedPanel extends JPanel {
     private Timer animationTimer;
     private Map<String, Double> latencies;
     
-    private static final Color L1_COLOR = new Color(144, 238, 144);  // Light green
-    private static final Color L2_COLOR = new Color(0, 0, 255);      // Blue
-    private static final Color L3_COLOR = new Color(128, 0, 128);    // Purple
-    private static final Color RAM_COLOR = new Color(255, 0, 0);     // Red
+    private static final Color L1_COLOR = new Color(144, 238, 144);    
+    private static final Color L2_COLOR = new Color(0, 0, 255);        
+    private static final Color L3_COLOR = new Color(128, 0, 128);      
+    private static final Color RAM_COLOR = new Color(255, 0, 0);       
     
     private class Ball {
         double x;
@@ -28,7 +28,7 @@ public class CacheSpeedPanel extends JPanel {
         boolean movingRight = true;
         
         Ball(int y, double speed, Color color, String label, String latency) {
-            this.x = 50;  // Start position
+            this.x = 50;    
             this.y = y;
             this.speed = speed;
             this.color = color;
@@ -42,21 +42,21 @@ public class CacheSpeedPanel extends JPanel {
         setPreferredSize(new Dimension(800, 300));
         setBorder(BorderFactory.createLineBorder(new Color(75, 75, 96), 1));
         
-        // Get real latencies
+          
         latencies = CacheLatencyTest.measureCacheLatencies();
         
-        // Create balls with proper spacing
+          
         int startY = 50;
         int spacing = 50;
         
-        // Calculate speeds based on latencies
+          
         double scaleFactor = 3.0;
         double l1Speed = scaleFactor * (1.0 / latencies.get("L1"));
         double l2Speed = scaleFactor * (1.0 / latencies.get("L2"));
         double l3Speed = scaleFactor * (1.0 / latencies.get("L3"));
         double ramSpeed = scaleFactor * (1.0 / latencies.get("RAM"));
         
-        // Create balls
+          
         balls.put("L1", new Ball(startY, l1Speed, L1_COLOR, "L1 Cache", 
                   String.format("%.2f ns", latencies.get("L1"))));
         balls.put("L2", new Ball(startY + spacing, l2Speed, L2_COLOR, "L2 Cache", 
@@ -66,9 +66,9 @@ public class CacheSpeedPanel extends JPanel {
         balls.put("RAM", new Ball(startY + spacing * 3, ramSpeed, RAM_COLOR, "RAM", 
                   String.format("%.2f ns", latencies.get("RAM"))));
         
-        // Animation timer
+          
         animationTimer = new Timer(16, e -> {
-            int boxX = getWidth() - 150;  // Calculate target X position dynamically
+            int boxX = getWidth() - 150;    
             
             for (Ball ball : balls.values()) {
                 if (ball.movingRight) {
@@ -86,7 +86,7 @@ public class CacheSpeedPanel extends JPanel {
             repaint();
         });
         
-        // Start animation when panel is shown
+          
         addHierarchyListener(e -> {
             if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0) {
                 if (isShowing()) {
@@ -105,35 +105,35 @@ public class CacheSpeedPanel extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
                             RenderingHints.VALUE_ANTIALIAS_ON);
         
-        // Draw title
+          
         g2d.setFont(new Font("Segoe UI", Font.BOLD, 16));
         g2d.setColor(Color.WHITE);
         g2d.drawString("Memory Access Speed Visualization", 10, 30);
         
-        // Draw CPU box
+          
         g2d.setColor(new Color(173, 216, 230));
         g2d.fillRect(10, 50, 30, 200);
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         g2d.drawString("CPU", 10, 270);
         
-        // Draw memory boxes and balls
+          
         int rightMargin = 150;
         int boxX = getWidth() - rightMargin;
         
         for (Ball ball : balls.values()) {
-            // Draw memory box
+              
             g2d.setColor(ball.color);
             g2d.fillRect(boxX, ball.y, BOX_WIDTH, BOX_HEIGHT);
             g2d.setColor(Color.WHITE);
             g2d.drawString(ball.label, boxX + 5, ball.y + BOX_HEIGHT/2);
             
-            // Draw ball
+              
             g2d.setColor(ball.color);
             g2d.fillOval((int)ball.x, ball.y + BOX_HEIGHT/2 - BALL_SIZE/2, 
                         BALL_SIZE, BALL_SIZE);
             
-            // Draw latency
+              
             g2d.setColor(Color.WHITE);
             g2d.drawString(ball.latency, boxX + BOX_WIDTH + 10, 
                          ball.y + BOX_HEIGHT/2);

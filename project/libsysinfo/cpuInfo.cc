@@ -148,7 +148,7 @@ void CPUInfo::read(int seconds)
         while (buffer[delim] == ' ')
             delim++;
         string value = line.substr (delim, string::npos);
-        // cout<<"K="<<key<<",V="<<value<<endl;
+          
         _parseInfo (key, value);
     }
 

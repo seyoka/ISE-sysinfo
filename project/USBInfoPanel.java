@@ -30,21 +30,21 @@ public class USBInfoPanel extends JPanel {
 
     public USBInfoPanel() {
         try {
-            // Basic panel setup
+              
             setLayout(new BorderLayout());
             setBackground(DARKER_BG);
             
-            // Initialize collections and USB info
+              
             devices = new ArrayList<>();
             usb = new usbInfo();
             
-            // Create UI components
+              
             initializeComponents();
             
-            // Initial data load
+              
             loadUSBData();
             
-            // Setup live updates
+              
             updateTimer = new Timer(1000, e -> {
                 try {
                     loadUSBData();
@@ -62,17 +62,17 @@ public class USBInfoPanel extends JPanel {
     }
 
     private void initializeComponents() {
-        // Create tabbed pane
+          
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setBackground(DARKER_BG);
         tabbedPane.setForeground(Color.WHITE);
         tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     
-        // Create detail view panel (existing layout)
+          
         JPanel detailView = new JPanel(new BorderLayout());
         detailView.setBackground(DARKER_BG);
     
-        // Create main panels for detail view
+          
         tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBackground(DARKER_BG);
         tablePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -87,7 +87,7 @@ public class USBInfoPanel extends JPanel {
         chartPanel.setBackground(DARKER_BG);
         chartPanel.setPreferredSize(new Dimension(300, 0));
     
-        // Create table
+          
         String[] columns = {"Bus", "Device", "Vendor ID", "Product ID"};
         model = new DefaultTableModel(columns, 0) {
             @Override
@@ -98,13 +98,13 @@ public class USBInfoPanel extends JPanel {
         table = new JTable(model);
         configureTable();
     
-        // Create search panel
+          
         createSearchPanel();
         
-        // Create stats panel
+          
         createStatsPanel();
     
-        // Layout for detail view
+          
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 tablePanel, chartPanel);
         splitPane.setDividerLocation(0.7);
@@ -117,17 +117,17 @@ public class USBInfoPanel extends JPanel {
         detailView.add(statsPanel, BorderLayout.NORTH);
         detailView.add(splitPane, BorderLayout.CENTER);
     
-        // Create tree view
+          
         JPanel treeView = new JPanel(new BorderLayout());
         treeView.setBackground(DARKER_BG);
         USBInfoTree usbTree = new USBInfoTree(usb);
-        treeView.add(usbTree); // Changed this line - directly add the USBInfoTree panel
+        treeView.add(usbTree);   
     
-        // Add both views to tabbed pane
+          
         tabbedPane.addTab("Detail View", detailView);
         tabbedPane.addTab("Tree View", treeView);
     
-        // Add tabbed pane to main panel
+          
         add(tabbedPane, BorderLayout.CENTER);
     }
 
@@ -151,7 +151,7 @@ public class USBInfoPanel extends JPanel {
                     String vendorName = USBDeviceMap.getVendorName(vendorIdHex);
                     String productName = USBDeviceMap.getProductName(vendorIdHex, productIdHex);
                     
-                    // Only display the names, no hex codes
+                      
                     model.addRow(new Object[]{
                         busIndex,
                         deviceIndex,
@@ -177,7 +177,7 @@ public class USBInfoPanel extends JPanel {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 5));
         searchPanel.setBackground(DARKER_BG);
 
-        // Search field
+          
         JLabel searchLabel = new JLabel("Search:");
         searchLabel.setForeground(Color.WHITE);
         searchLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -191,7 +191,7 @@ public class USBInfoPanel extends JPanel {
             BorderFactory.createEmptyBorder(5, 5, 5, 5)
         ));
 
-        // Bus filter
+          
         JLabel busLabel = new JLabel("Bus:");
         busLabel.setForeground(Color.WHITE);
         busLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -202,7 +202,7 @@ public class USBInfoPanel extends JPanel {
         busFilter.addItem("All Buses");
         styleComboBox(busFilter);
 
-        // Add listeners
+          
         searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             public void changedUpdate(javax.swing.event.DocumentEvent e) { filterTable(); }
             public void removeUpdate(javax.swing.event.DocumentEvent e) { filterTable(); }
@@ -210,7 +210,7 @@ public class USBInfoPanel extends JPanel {
         });
         busFilter.addActionListener(e -> filterTable());
 
-        // Add components
+          
         searchPanel.add(searchLabel);
         searchPanel.add(searchField);
         searchPanel.add(Box.createHorizontalStrut(10));
@@ -225,13 +225,13 @@ public class USBInfoPanel extends JPanel {
         statsPanel.setBackground(DARKER_BG);
         
         try {
-            // Get unique buses
+              
             Set<Integer> uniqueBuses = new HashSet<>();
             int totalDevices = 0;
             
-            usb.read();  // Read USB info
+            usb.read();    
             
-            // Count buses that actually have devices
+              
             for (int busIndex = 1; busIndex <= usb.busCount(); busIndex++) {
                 int deviceCount = usb.deviceCount(busIndex);
                 if (deviceCount > 0) {
@@ -240,7 +240,7 @@ public class USBInfoPanel extends JPanel {
                 }
             }
             
-            // Create labels with actual counts
+              
             JLabel busCountLabel = new JLabel(String.format("Total USB Buses: %d", uniqueBuses.size()));
             busCountLabel.setForeground(Color.WHITE);
             busCountLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -249,7 +249,7 @@ public class USBInfoPanel extends JPanel {
             deviceCountLabel.setForeground(Color.WHITE);
             deviceCountLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
             
-            // Add to panel
+              
             statsPanel.add(busCountLabel);
             statsPanel.add(Box.createHorizontalStrut(20));
             statsPanel.add(deviceCountLabel);
@@ -265,13 +265,13 @@ public class USBInfoPanel extends JPanel {
     private void drawPieChart(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Calculate devices per bus
+          
         Map<Integer, Integer> devicesPerBus = new HashMap<>();
         for (BusDevice device : devices) {
             devicesPerBus.merge(device.getBus(), 1, Integer::sum);
         }
 
-        // Draw pie chart
+          
         int diameter = Math.min(chartPanel.getWidth(), chartPanel.getHeight()) - 60;
         int x = (chartPanel.getWidth() - diameter) / 2;
         int y = (chartPanel.getHeight() - diameter) / 2;
@@ -279,7 +279,7 @@ public class USBInfoPanel extends JPanel {
         double total = devices.size();
         double currentAngle = 0;
 
-        // Draw title
+          
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Segoe UI", Font.BOLD, 16));
         String title = "Devices per Bus";
@@ -288,7 +288,7 @@ public class USBInfoPanel extends JPanel {
             (chartPanel.getWidth() - fm.stringWidth(title)) / 2, 
             20);
 
-        // Draw pie slices
+          
         int colorIndex = 0;
         Color[] colors = {
             new Color(77, 208, 255),
@@ -305,7 +305,7 @@ public class USBInfoPanel extends JPanel {
             g2.fill(new Arc2D.Double(x, y, diameter, diameter, 
                 currentAngle, sliceAngle, Arc2D.PIE));
 
-            // Draw legend
+              
             int legendY = y + diameter + 20 + (colorIndex * 20);
             g2.fillRect(x, legendY, 15, 15);
             g2.setColor(Color.WHITE);
@@ -326,14 +326,14 @@ public class USBInfoPanel extends JPanel {
         table.setRowHeight(30);
         table.getTableHeader().setReorderingAllowed(false);
 
-        // Column sizing
+          
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(0).setMinWidth(50);
         columnModel.getColumn(0).setMaxWidth(50);
         columnModel.getColumn(1).setMinWidth(70);
         columnModel.getColumn(1).setMaxWidth(70);
 
-        // Cell renderers
+          
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         centerRenderer.setBackground(DARKER_BG);
@@ -343,13 +343,13 @@ public class USBInfoPanel extends JPanel {
             columnModel.getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        // Header styling
+          
         JTableHeader header = table.getTableHeader();
         header.setBackground(HEADER_COLOR);
         header.setForeground(Color.WHITE);
         header.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
-        // Row styling
+          
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -423,7 +423,7 @@ public class USBInfoPanel extends JPanel {
                 String selectedBus = busFilter.getSelectedItem() != null ? 
                     (String) busFilter.getSelectedItem() : "All Buses";
 
-                // Search text filter
+                  
                 boolean matchesSearch = searchText.isEmpty();
                 if (!matchesSearch) {
                     for (int i = 0; i < entry.getValueCount(); i++) {
@@ -435,7 +435,7 @@ public class USBInfoPanel extends JPanel {
                     }
                 }
 
-                // Bus filter
+                  
                 boolean matchesBus = "All Buses".equals(selectedBus) ||
                     entry.getStringValue(0).equals(selectedBus);
 

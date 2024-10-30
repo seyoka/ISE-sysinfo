@@ -9,13 +9,13 @@
 #include "cpuInfo.h"
 #include "sysInfo.h"
 
-// Example JNI function that returns an int
+  
 JNIEXPORT jint JNICALL Java_sysInfo_intExample
   (JNIEnv *env, jobject obj, jint num) {
    return num * num;
 }
 
-// Example JNI function that returns a string
+  
 JNIEXPORT jstring JNICALL Java_sysInfo_stringExample
     (JNIEnv *env, jobject obj, jstring string)
 {
@@ -25,7 +25,7 @@ JNIEXPORT jstring JNICALL Java_sysInfo_stringExample
 
     strcat(msg, name);
     env->ReleaseStringUTFChars(string, name);
-    // puts(msg);
+      
     result = env->NewStringUTF(msg);
     return result;
 }

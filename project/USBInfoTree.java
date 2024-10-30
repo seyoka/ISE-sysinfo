@@ -13,7 +13,7 @@ public class USBInfoTree extends JPanel {
         setLayout(new BorderLayout());
         setBackground(new Color(35, 35, 52));
 
-        // Create refresh button
+          
         JButton refreshButton = new JButton("Refresh");
         refreshButton.setForeground(Color.WHITE);
         refreshButton.setBackground(new Color(75, 75, 96));
@@ -22,7 +22,7 @@ public class USBInfoTree extends JPanel {
         buttonPanel.add(refreshButton);
         add(buttonPanel, BorderLayout.NORTH);
 
-        // Create tree
+          
         root = new DefaultMutableTreeNode("USB Buses");
         tree = new JTree(root);
         tree.setBackground(new Color(35, 35, 52));
@@ -37,7 +37,7 @@ public class USBInfoTree extends JPanel {
             refreshTree();
         });
 
-        refreshTree(); // Initial load
+        refreshTree();   
     }
 
     private void refreshTree() {

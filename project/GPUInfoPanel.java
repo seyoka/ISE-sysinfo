@@ -21,7 +21,7 @@ public class GPUInfoPanel extends JPanel {
             BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
 
-        // Title panel
+          
         JLabel titleLabel = new JLabel("GPU Information");
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -30,17 +30,17 @@ public class GPUInfoPanel extends JPanel {
         titlePanel.add(titleLabel);
         add(titlePanel, BorderLayout.NORTH);
 
-        // Content panel
+          
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(BACKGROUND_COLOR);
         add(new JScrollPane(contentPanel), BorderLayout.CENTER);
 
-        // Update timer
+          
         updateTimer = new Timer(2000, e -> updateGPUInfo(contentPanel));
         updateTimer.start();
 
-        // Initial update
+          
         updateGPUInfo(contentPanel);
     }
 
@@ -49,12 +49,12 @@ public class GPUInfoPanel extends JPanel {
         gpuInfo = SystemInfo.getGPUInfo();
 
         if (!gpuInfo.isEmpty()) {
-            // Add NVIDIA GPU information if available
+              
             if (gpuInfo.containsKey("NVIDIA Model")) {
                 JPanel nvidiaPanel = createInfoPanel("NVIDIA GPU");
                 addInfoRow(nvidiaPanel, "Model", gpuInfo.get("NVIDIA Model"));
                 
-                // Add temperature with color coding
+                  
                 String temp = gpuInfo.get("NVIDIA Temp");
                 if (temp != null) {
                     try {
@@ -73,7 +73,7 @@ public class GPUInfoPanel extends JPanel {
                 contentPanel.add(Box.createVerticalStrut(10));
             }
 
-            // Add other GPU information
+              
             gpuInfo.entrySet().stream()
                    .filter(entry -> entry.getKey().startsWith("GPU "))
                    .forEach(entry -> {

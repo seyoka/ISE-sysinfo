@@ -6,17 +6,17 @@ public class DashboardApp {
     private JPanel mainContent;
     private CardLayout cardLayout;
     
-    // Colors based on your CSS
-    private final Color BACKGROUND_COLOR = new Color(30, 30, 47);      // #1e1e2f
-    private final Color SIDEBAR_COLOR = new Color(41, 41, 66);         // #292942
-    private final Color MAIN_CONTENT_COLOR = new Color(47, 47, 68);    // #2f2f44
-    private final Color BUTTON_COLOR = new Color(52, 50, 74);          // #34324a
-    private final Color BUTTON_HOVER_COLOR = new Color(87, 85, 125);   // #57557d
-    private final Color BORDER_COLOR = new Color(75, 75, 96);          // #4b4b60
+      
+    private final Color BACKGROUND_COLOR = new Color(30, 30, 47);        
+    private final Color SIDEBAR_COLOR = new Color(41, 41, 66);           
+    private final Color MAIN_CONTENT_COLOR = new Color(47, 47, 68);      
+    private final Color BUTTON_COLOR = new Color(52, 50, 74);            
+    private final Color BUTTON_HOVER_COLOR = new Color(87, 85, 125);     
+    private final Color BORDER_COLOR = new Color(75, 75, 96);            
 
     public DashboardApp() {
         try {
-            // Set system look and feel
+              
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,14 +30,14 @@ public class DashboardApp {
         frame.setSize(900, 600);
         frame.getContentPane().setBackground(BACKGROUND_COLOR);
 
-        // Create sidebar
+          
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
         sidebar.setBackground(SIDEBAR_COLOR);
         sidebar.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         sidebar.setPreferredSize(new Dimension(200, 600));
 
-        // Initialize CardLayout and mainContent FIRST
+          
         cardLayout = new CardLayout();
         mainContent = new JPanel(cardLayout);
         mainContent.setBackground(MAIN_CONTENT_COLOR);
@@ -60,18 +60,18 @@ public class DashboardApp {
         USBInfoPanel usbPanel = new USBInfoPanel(); 
         mainContent.add(usbPanel, "Bus Info");
 
-        // Create buttons
+          
         String[] buttonLabels = {"General Info", "CPU Info", "Memory Info", "PCI Info", "Bus Info"};
         for (String label : buttonLabels) {
             JButton button = createStyledButton(label);
             sidebar.add(button);
             sidebar.add(Box.createRigidArea(new Dimension(0, 15)));
             
-            // Add specific action for PCI Info button
+              
             if (label.equals("PCI Info")) {
                 button.addActionListener(e -> {
                     cardLayout.show(mainContent, label);
-                    pciPanel.refreshData();  // Refresh data when PCI tab is selected
+                    pciPanel.refreshData();    
                 });
             } else {
                 button.addActionListener(e -> cardLayout.show(mainContent, label));
@@ -80,7 +80,7 @@ public class DashboardApp {
 
 
 
-        // Layout setup
+          
         frame.setLayout(new BorderLayout());
         frame.add(sidebar, BorderLayout.WEST);
         frame.add(mainContent, BorderLayout.CENTER);
@@ -126,7 +126,7 @@ public class DashboardApp {
         button.setFocusPainted(false);
         button.setOpaque(false);
         
-        // Add action listener
+          
         button.addActionListener(e -> cardLayout.show(mainContent, text));
 
         return button;

@@ -15,7 +15,7 @@ public class PCIMaps {
 
     public void loadMaps(String csvFile) {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            // Skip header
+              
             br.readLine();
             
             String line;
@@ -27,12 +27,12 @@ public class PCIMaps {
                     String deviceId = fields.get(2).trim();
                     String deviceName = fields.get(3).trim();
 
-                    // Add to vendor map if not empty
+                      
                     if (!vendorId.isEmpty()) {
                         vendorMap.put(vendorId, vendorName);
                     }
 
-                    // Add to product map if both IDs exist
+                      
                     if (!vendorId.isEmpty() && !deviceId.isEmpty()) {
                         String fullId = vendorId + ":" + deviceId;
                         productMap.put(fullId, deviceName);
@@ -60,7 +60,7 @@ public class PCIMaps {
         }
         fields.add(field.toString().trim());
         
-        // Clean up quotes from fields
+          
         for (int i = 0; i < fields.size(); i++) {
             String f = fields.get(i);
             if (f.startsWith("\"") && f.endsWith("\"")) {
@@ -71,7 +71,7 @@ public class PCIMaps {
         return fields;
     }
 
-    // Getters for the maps
+      
     public HashMap<String, String> getVendorMap() {
         return vendorMap;
     }
@@ -80,7 +80,7 @@ public class PCIMaps {
         return productMap;
     }
 
-    // Convenience lookup methods
+      
     public String getVendorName(String vendorId) {
         return vendorMap.getOrDefault(vendorId, "Unknown Vendor");
     }
@@ -89,22 +89,22 @@ public class PCIMaps {
         return productMap.getOrDefault(vendorId + ":" + deviceId, "Unknown Device");
     }
 
-    // Simple test main method
-    // public static void main(String[] args) {
-    //     PCIMaps maps = new PCIMaps();
-    //     maps.loadMaps("pci_devices.csv");
+      
+      
+      
+      
         
-    //     // Print sizes
-    //     System.out.println("Vendor Map size: " + maps.getVendorMap().size());
-    //     System.out.println("Product Map size: " + maps.getProductMap().size());
+      
+      
+      
         
-    //     // Test lookups
-    //     String testVendorId = "0014";
-    //     String testDeviceId = "7a00";
+      
+      
+      
         
-    //     System.out.println("\nTesting lookups:");
-    //     System.out.println("Vendor " + testVendorId + ": " + maps.getVendorName(testVendorId));
-    //     System.out.println("Product " + testVendorId + ":" + testDeviceId + ": " + 
-    //                       maps.getProductName(testVendorId, testDeviceId));
-    // }
+      
+      
+      
+      
+      
 }

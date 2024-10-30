@@ -75,23 +75,23 @@ void PCIInfo::_parseDevice (char buffer[])
     unsigned int ident;
     
     stream >> hex >> location >> ident;
-    // cout << "loc=" << hex << location << ", id=" << ident << endl;
+      
     
     int bus = location >> 8;
     assert (bus < maxBus);
     int device = (location & 0xf8) >> 3;
     int function = location & 0x7;
-    // cout<<"b="<<bus<<",d="<<device<<",f="<<function<<endl;
+      
 
-    // Does this bus already have devices?  If not, increment the bus count
+      
     if (_bus[bus].deviceCount == 0)
         _busCount++;
 
-    // Does this device already have any functions?  If not increment the device count
+      
     if (_bus[bus].device[device].functionCount == 0)
         _bus[bus].deviceCount++;
 
-    // Increment the function count for the device
+      
     _bus[bus].device[device].functionCount++;
 
     _bus[bus].device[device].function[function].present = true;

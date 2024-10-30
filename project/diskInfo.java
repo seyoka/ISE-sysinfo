@@ -6,7 +6,7 @@
 
 public class diskInfo 
 {
-    // Refresh the current values and counters - call this before other methods
+      
     public native void read ();
     public native int diskCount ();
     public native String getName (int disk);

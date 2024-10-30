@@ -13,21 +13,21 @@ import java.util.HashMap;
 public class CPUCachePage extends JPanel {
 
     public CPUCachePage() {
-        // Set the layout for the panel
+          
         setLayout(new BorderLayout());
 
-        // Make the panel background transparent
+          
         setOpaque(false);
 
         CPU cpu = new CPU();
         JFreeChart chart = createChart(createDataset(cpu.getAllCache()));
         setColours(chart);
 
-        // Create a ChartPanel and set its background to transparent
+          
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setOpaque(false); // Make ChartPanel transparent
-        chartPanel.setBackground(new Color(0, 0, 0, 0)); // Set ChartPanel background to fully transparent
-        chartPanel.setPreferredSize(new Dimension(400, 300)); // Set an appropriate size
+        chartPanel.setOpaque(false);   
+        chartPanel.setBackground(new Color(0, 0, 0, 0));   
+        chartPanel.setPreferredSize(new Dimension(400, 300));   
 
         add(chartPanel, BorderLayout.CENTER);
     }
@@ -44,7 +44,7 @@ public class CPUCachePage extends JPanel {
         RingPlot plot = (RingPlot) chart.getPlot();
         PieDataset ds = plot.getDataset();
 
-        // Set section colors
+          
         plot.setSectionPaint(ds.getKey(0), new Color(245, 91, 73));
         plot.setSectionPaint(ds.getKey(1), new Color(245, 162, 73));
         plot.setSectionPaint(ds.getKey(2), new Color(75, 189, 227));
@@ -53,7 +53,7 @@ public class CPUCachePage extends JPanel {
         plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {1} Bytes"));
         plot.setSeparatorsVisible(false);
 
-        // Set explosion percent for specific sections
+          
         plot.setExplodePercent(ds.getKey(0), 0.15);
         plot.setExplodePercent(ds.getKey(1), 0.0);
         plot.setExplodePercent(ds.getKey(2), 0.15);
@@ -64,9 +64,9 @@ public class CPUCachePage extends JPanel {
         return ChartFactory.createRingChart(
                 "CPU Caches",
                 ds,
-                true,  // include legend
-                false, // tooltips
-                false  // URLs
+                true,    
+                false,   
+                false    
         );
     }
 }

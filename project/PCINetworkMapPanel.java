@@ -20,14 +20,14 @@ public class PCINetworkMapPanel extends JPanel {
         this.totalBuses = totalBuses;
         setBackground(new Color(47, 47, 68));
         
-        // Calculate panel size based on content
+          
         int panelWidth = (DEVICE_WIDTH + HORIZONTAL_GAP) * totalBuses + HORIZONTAL_GAP;
         int maxDevicesPerBus = getMaxDevicesPerBus();
         int panelHeight = DEVICE_HEIGHT * (maxDevicesPerBus + 2) + VERTICAL_GAP * 3;
         
         setPreferredSize(new Dimension(Math.max(1200, panelWidth), Math.max(800, panelHeight)));
         
-        // Initialize devicesByBus map
+          
         updateDeviceMap();
     }
     
@@ -52,18 +52,18 @@ public class PCINetworkMapPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        // Calculate positions
+          
         int computerX = getWidth() / 2 - DEVICE_WIDTH / 2;
         int computerY = 20;
         int totalWidth = (totalBuses * (DEVICE_WIDTH + HORIZONTAL_GAP)) - HORIZONTAL_GAP;
         int startX = (getWidth() - totalWidth) / 2;
         int busY = computerY + DEVICE_HEIGHT + VERTICAL_GAP;
         
-        // First draw all connection lines
+          
         g2d.setColor(new Color(75, 75, 96));
         drawAllConnectionLines(g2d, computerX, computerY, startX, busY);
         
-        // Then draw all nodes
+          
         drawAllNodes(g2d, computerX, computerY, startX, busY);
     }
     
@@ -71,11 +71,11 @@ public class PCINetworkMapPanel extends JPanel {
         for (int i = 1; i <= totalBuses; i++) {
             int busX = startX + (i-1) * (DEVICE_WIDTH + HORIZONTAL_GAP);
             
-            // Draw line from computer to bus
+              
             g2d.drawLine(computerX + DEVICE_WIDTH/2, computerY + DEVICE_HEIGHT,
                         busX + DEVICE_WIDTH/2, busY);
             
-            // Draw lines to devices
+              
             List<PCIDevice> busDevices = devicesByBus.getOrDefault(i, new ArrayList<>());
             if (!busDevices.isEmpty()) {
                 int deviceY = busY + DEVICE_HEIGHT + VERTICAL_GAP;
@@ -90,16 +90,16 @@ public class PCINetworkMapPanel extends JPanel {
     }
 
     private void drawAllNodes(Graphics2D g2d, int computerX, int computerY, int startX, int busY) {
-        // Draw computer node
+          
         drawNode(g2d, computerX, computerY, "Computer", null);
         
-        // Draw bus nodes and their devices
+          
         for (int i = 1; i <= totalBuses; i++) {
             int busX = startX + (i-1) * (DEVICE_WIDTH + HORIZONTAL_GAP);
             String busLabel = devicesByBus.containsKey(i) ? "Bus " + i : "Bus " + i + " (Empty)";
             drawNode(g2d, busX, busY, busLabel, null);
             
-            // Draw device nodes
+              
             List<PCIDevice> busDevices = devicesByBus.getOrDefault(i, new ArrayList<>());
             int deviceY = busY + DEVICE_HEIGHT + VERTICAL_GAP;
             
@@ -112,24 +112,24 @@ public class PCINetworkMapPanel extends JPanel {
     }
     
     private void drawNode(Graphics2D g2d, int x, int y, String label, PCIDevice device) {
-        // Draw background
+          
         g2d.setColor(new Color(41, 41, 66));
         g2d.fillRect(x, y, DEVICE_WIDTH, DEVICE_HEIGHT);
         g2d.setColor(new Color(75, 75, 96));
         g2d.drawRect(x, y, DEVICE_WIDTH, DEVICE_HEIGHT);
         
-        // Draw text
+          
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Segoe UI", Font.PLAIN, 11));
         
         FontMetrics fm = g2d.getFontMetrics();
         if (device == null) {
-            // Bus or computer node
+              
             int textX = x + (DEVICE_WIDTH - fm.stringWidth(label)) / 2;
             int textY = y + DEVICE_HEIGHT / 2 + fm.getAscent() / 2;
             g2d.drawString(label, textX, textY);
         } else {
-            // Device node
+              
             int padding = 5;
             int lineHeight = fm.getHeight();
             

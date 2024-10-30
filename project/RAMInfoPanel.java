@@ -19,7 +19,7 @@ public class RAMInfoPanel extends JPanel {
             BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
 
-        // Title panel at the top
+          
         JLabel titleLabel = new JLabel("RAM Information");
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -28,17 +28,17 @@ public class RAMInfoPanel extends JPanel {
         titlePanel.add(titleLabel);
         add(titlePanel, BorderLayout.NORTH);
 
-        // Content panel for RAM info
+          
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(BACKGROUND_COLOR);
         add(new JScrollPane(contentPanel), BorderLayout.CENTER);
 
-        // Update timer
+          
         updateTimer = new Timer(5000, e -> updateRAMInfo(contentPanel));
         updateTimer.start();
 
-        // Initial update
+          
         updateRAMInfo(contentPanel);
     }
 
@@ -46,7 +46,7 @@ public class RAMInfoPanel extends JPanel {
         contentPanel.removeAll();
         Map<String, String> ramInfo = SystemInfo.getRAMInfo();
     
-        // Add Total RAM section
+          
         JPanel totalRAMPanel = createInfoPanel("Total RAM");
         if (ramInfo.containsKey("Total RAM")) {
             addInfoRow(totalRAMPanel, "Capacity", ramInfo.get("Total RAM"));
@@ -60,14 +60,14 @@ public class RAMInfoPanel extends JPanel {
         contentPanel.add(totalRAMPanel);
         contentPanel.add(Box.createVerticalStrut(10));
     
-        // Add info for each memory bank
+          
         for (String key : ramInfo.keySet()) {
             if (key.startsWith("Bank") && key.endsWith("Size")) {
-                String bankPrefix = key.substring(0, key.length() - 5);  // Remove " Size"
+                String bankPrefix = key.substring(0, key.length() - 5);    
                 if (!ramInfo.get(key).contains("No Module Installed")) {
                     JPanel bankPanel = createInfoPanel(bankPrefix);
                     
-                    // Add all available information for this bank
+                      
                     String[] fields = {"Size", "Type", "Speed", "Manufacturer", 
                                      "Form Factor", "Data Width", "Slot"};
                     
@@ -139,7 +139,7 @@ public class RAMInfoPanel extends JPanel {
         if (info.containsKey(bankPrefix + " Size") && !info.get(bankPrefix + " Size").equals("No Module Installed")) {
             JPanel bankPanel = createInfoPanel("Memory " + bankPrefix);
             
-            // Add all available information for this bank
+              
             String[] fields = {
                 "Size", "Type", "Speed", "Manufacturer", 
                 "Form Factor", "Data Width", "Slot"

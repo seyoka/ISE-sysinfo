@@ -28,21 +28,21 @@ public class CPUCachePage extends JPanel {
     }
 
     private void drawPieChart(Graphics g){
-        //adding total for pie chart to read
+          
         int total=0;
         for(int value: vals.values()){
             total+= value;
         }
 
-        //Draw pie chart angles
+          
         int startAngle = 0;
-        int minAngle = 10; //for small cache
+        int minAngle = 10;   
         int totalAngle = 360;
         int i=0;
         for(int value: vals.values()){
             int angle = (int)Math.round((double) value / total * totalAngle);
             System.out.println(angle);
-            // Use minimum angle for small segments
+              
             if (angle < minAngle) {
                 angle = minAngle;
                 totalAngle -= 10;
@@ -56,11 +56,11 @@ public class CPUCachePage extends JPanel {
         }
 
         if (startAngle < 360) {
-            g.setColor(colors[i % colors.length]); // Use next color for the fill, if needed
+            g.setColor(colors[i % colors.length]);   
             g.fillArc(100, 100, 400, 400, startAngle, 360 - startAngle);
         }
 
-        //legend
+          
         int j=0;
         for (String labels: vals.keySet()){
             g.setColor(colors[j % colors.length]);

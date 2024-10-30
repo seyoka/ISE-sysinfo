@@ -29,7 +29,7 @@ class BusDevice {
         return productID;
     }
 
-    // Format the array
+      
     @Override
     public String toString() {
         return String.format("Bus: %d, Device: %d, Vendor ID: 0x%04X, Product ID: 0x%04X",

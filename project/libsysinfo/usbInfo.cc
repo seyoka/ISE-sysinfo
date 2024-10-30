@@ -83,13 +83,13 @@ void USBInfo::_parseDevice (char buffer[])
     part = "0x"+line.substr(28,4);
     _bus[bus].device[device].product = _xtoi (part,0);
 
-    // cout<<"bus="<<bus<<", dev="<<device<<endl;
+      
     if (bus > _busCount)
         _busCount = bus;
 
     if (device > _bus[bus].deviceCount)
         _bus[bus].deviceCount = device;
-    // cout<<"busus="<<_busCount<<", devs="<<_bus[bus].deviceCount<<endl;
+      
 }
 
 void USBInfo::read()
