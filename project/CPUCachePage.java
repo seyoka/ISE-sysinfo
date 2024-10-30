@@ -16,12 +16,9 @@ public class CPUCachePage extends JPanel {
         // Set the layout for the panel
         setLayout(new BorderLayout());
 
-<<<<<<< HEAD
         // Make the panel background transparent
         setOpaque(false);
 
-=======
->>>>>>> 4594384636ee83ecd8755db47f58b30a6f9a0f63
         CPU cpu = new CPU();
         JFreeChart chart = createChart(createDataset(cpu.getAllCache()));
         setColours(chart);

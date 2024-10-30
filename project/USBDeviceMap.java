@@ -1,58 +1,94 @@
+import java.io.*;
 import java.util.*;
 
 public class USBDeviceMap {
-    private static final Map<String, String> vendorMap;
-    private static final Map<String, Map<String, String>> productMap;
-
+    private static final Map<String, String> vendorMap = new HashMap<>();
+    private static final Map<String, Map<String, String>> productMap = new HashMap<>();
+    private static final Map<String, String> deviceClassMap = new HashMap<>();
+    
     static {
-        vendorMap = new HashMap<>();
-        productMap = new HashMap<>();
+        // Initialize device classes
+        deviceClassMap.put("00", "Per Interface");
+        deviceClassMap.put("01", "Audio");
+        deviceClassMap.put("02", "Communications and CDC Control");
+        deviceClassMap.put("03", "Human Interface Device (HID)");
+        deviceClassMap.put("05", "Physical Interface Device");
+        deviceClassMap.put("06", "Image");
+        deviceClassMap.put("07", "Printer");
+        deviceClassMap.put("08", "Mass Storage");
+        deviceClassMap.put("09", "Hub");
+        deviceClassMap.put("0A", "CDC-Data");
+        deviceClassMap.put("0B", "Smart Card");
+        deviceClassMap.put("0D", "Content Security");
+        deviceClassMap.put("0E", "Video");
+        deviceClassMap.put("0F", "Personal Healthcare");
+        deviceClassMap.put("10", "Audio/Video Devices");
+        deviceClassMap.put("11", "Billboard Device");
+        deviceClassMap.put("12", "USB Type-C Bridge");
+        deviceClassMap.put("DC", "Diagnostic Device");
+        deviceClassMap.put("E0", "Wireless Controller");
+        deviceClassMap.put("EF", "Miscellaneous");
+        deviceClassMap.put("FE", "Application Specific");
+        deviceClassMap.put("FF", "Vendor Specific");
 
-        // Common USB Vendor IDs
-        vendorMap.put("0x1D6B", "Linux Foundation");
-        vendorMap.put("0x8087", "Intel Corp.");
-        vendorMap.put("0x0B05", "ASUSTek Computer, Inc.");
-        vendorMap.put("0x05E3", "Genesys Logic, Inc.");
-        vendorMap.put("0x1B1C", "Corsair");
-        
-        // Product IDs for Linux Foundation
-        Map<String, String> linuxProducts = new HashMap<>();
-        linuxProducts.put("0x0002", "2.0 root hub");
-        linuxProducts.put("0x0003", "3.0 root hub");
-        productMap.put("0x1D6B", linuxProducts);
-        
-        // Product IDs for Intel
-        Map<String, String> intelProducts = new HashMap<>();
-        intelProducts.put("0x0029", "Intel Wireless Device");
-        productMap.put("0x8087", intelProducts);
-        
-        // Product IDs for ASUS
-        Map<String, String> asusProducts = new HashMap<>();
-        asusProducts.put("0x1939", "ASUS USB Device");
-        productMap.put("0x0B05", asusProducts);
-        
-        // Product IDs for Genesys
-        Map<String, String> genesysProducts = new HashMap<>();
-        genesysProducts.put("0x0610", "USB 2.0 Hub");
-        productMap.put("0x05E3", genesysProducts);
-        
-        // Product IDs for Corsair
-        Map<String, String> corsairProducts = new HashMap<>();
-        corsairProducts.put("0x1B79", "Corsair USB Device");
-        corsairProducts.put("0x1BFE", "Corsair Gaming Device");
-        corsairProducts.put("0x0C1A", "Corsair USB Peripheral");
-        productMap.put("0x1B1C", corsairProducts);
+        // Load USB IDs from file
+        loadUSBIds();
+    }
+
+    private static void loadUSBIds() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("usb.ids"))) {
+            String line;
+            String currentVendor = null;
+            Map<String, String> currentProducts = null;
+
+            while ((line = reader.readLine()) != null) {
+
+                if (line.startsWith("#") || line.trim().isEmpty()) {
+                    continue;
+                }
+
+                // Vendor line (no tabs)
+                if (!line.startsWith("\t")) {
+                    String[] parts = line.split("\\s+", 2);
+                    if (parts.length == 2) {
+                        currentVendor = parts[0].toLowerCase();
+                        vendorMap.put(currentVendor, parts[1].trim());
+                        currentProducts = new HashMap<>();
+                        productMap.put(currentVendor, currentProducts);
+                    }
+                }
+
+                else if (line.startsWith("\t") && !line.startsWith("\t\t") && currentVendor != null) {
+                    String[] parts = line.trim().split("\\s+", 2);
+                    if (parts.length == 2) {
+                        currentProducts.put(parts[0].toLowerCase(), parts[1].trim());
+                    }
+                }
+               
+            }
+        } catch (IOException e) {
+            System.err.println("Error loading USB IDs: " + e.getMessage());
+        }
     }
 
     public static String getVendorName(String vendorId) {
-        return vendorMap.getOrDefault(vendorId.toUpperCase(), "Unknown Vendor");
+        return vendorMap.getOrDefault(vendorId.toLowerCase(), "Unknown Vendor");
     }
 
     public static String getProductName(String vendorId, String productId) {
-        Map<String, String> products = productMap.get(vendorId.toUpperCase());
+        Map<String, String> products = productMap.get(vendorId.toLowerCase());
         if (products != null) {
-            return products.getOrDefault(productId.toUpperCase(), "Unknown Product");
+            return products.getOrDefault(productId.toLowerCase(), "Unknown Product");
         }
         return "Unknown Product";
+    }
+
+    public static String getDeviceClass(String classCode) {
+        return deviceClassMap.getOrDefault(classCode.toUpperCase(), "Unknown Class");
+    }
+
+    
+    public static String formatId(int id) {
+        return String.format("0x%04x", id).toLowerCase();
     }
 }

@@ -25,15 +25,40 @@ public class USBInfoPanel extends JPanel {
     private java.util.List<BusDevice> devices;
     private usbInfo usb;
 
+    private Timer updateTimer;
+
+
     public USBInfoPanel() {
-        setLayout(new BorderLayout());
-        setBackground(DARKER_BG);
-        
-        devices = new ArrayList<>();
-        usb = new usbInfo();
-        
-        initializeComponents();
-        loadUSBData();
+        try {
+            // Basic panel setup
+            setLayout(new BorderLayout());
+            setBackground(DARKER_BG);
+            
+            // Initialize collections and USB info
+            devices = new ArrayList<>();
+            usb = new usbInfo();
+            
+            // Create UI components
+            initializeComponents();
+            
+            // Initial data load
+            loadUSBData();
+            
+            // Setup live updates
+            updateTimer = new Timer(1000, e -> {
+                try {
+                    loadUSBData();
+                    repaint();
+                } catch (Exception ex) {
+                    System.err.println("Error updating USB data: " + ex.getMessage());
+                }
+            });
+            updateTimer.start();
+            
+        } catch (Exception e) {
+            System.err.println("Error initializing USB panel: " + e.getMessage());
+            add(new JLabel("Error initializing USB information"), BorderLayout.CENTER);
+        }
     }
 
     private void initializeComponents() {
@@ -90,51 +115,29 @@ public class USBInfoPanel extends JPanel {
             
             usb.read();
             
-            // Track actual counts
-            Set<Integer> uniqueBuses = new HashSet<>();
-            int totalDevices = 0;
-            
             for (int busIndex = 1; busIndex <= usb.busCount(); busIndex++) {
                 int deviceCount = usb.deviceCount(busIndex);
-                if (deviceCount > 0) {
-                    uniqueBuses.add(busIndex);
-                    for (int deviceIndex = 1; deviceIndex <= deviceCount; deviceIndex++) {
-                        int vendorID = usb.vendorID(busIndex, deviceIndex);
-                        int productID = usb.productID(busIndex, deviceIndex);
-                        
-                        BusDevice device = new BusDevice(busIndex, deviceIndex, vendorID, productID);
-                        devices.add(device);
-                        totalDevices++;
-                        
-                        String vendorIdHex = String.format("0x%04X", vendorID);
-                        String productIdHex = String.format("0x%04X", productID);
-                        
-                        String vendorName = USBDeviceMap.getVendorName(vendorIdHex);
-                        String productName = USBDeviceMap.getProductName(vendorIdHex, productIdHex);
-                        
-                        model.addRow(new Object[]{
-                            busIndex,
-                            deviceIndex,
-                            String.format("%s (%s)", vendorIdHex, vendorName),
-                            String.format("%s (%s)", productIdHex, productName)
-                        });
-                    }
+                for (int deviceIndex = 1; deviceIndex <= deviceCount; deviceIndex++) {
+                    int vendorID = usb.vendorID(busIndex, deviceIndex);
+                    int productID = usb.productID(busIndex, deviceIndex);
+                    
+                    String vendorIdHex = String.format("%04x", vendorID);
+                    String productIdHex = String.format("%04x", productID);
+                    
+                    String vendorName = USBDeviceMap.getVendorName(vendorIdHex);
+                    String productName = USBDeviceMap.getProductName(vendorIdHex, productIdHex);
+                    
+                    // Only display the names, no hex codes
+                    model.addRow(new Object[]{
+                        busIndex,
+                        deviceIndex,
+                        vendorName,
+                        productName
+                    });
+                    
+                    devices.add(new BusDevice(busIndex, deviceIndex, vendorID, productID));
                 }
             }
-            
-            // Update stats panel with new counts
-            statsPanel.removeAll();
-            JLabel busCountLabel = new JLabel(String.format("Total USB Buses: %d", uniqueBuses.size()));
-            JLabel deviceCountLabel = new JLabel(String.format("Total Devices: %d", totalDevices));
-            
-            busCountLabel.setForeground(Color.WHITE);
-            deviceCountLabel.setForeground(Color.WHITE);
-            
-            statsPanel.add(busCountLabel);
-            statsPanel.add(Box.createHorizontalStrut(20));
-            statsPanel.add(deviceCountLabel);
-            statsPanel.revalidate();
-            statsPanel.repaint();
             
             updateFilters();
             repaint();
@@ -144,6 +147,7 @@ public class USBInfoPanel extends JPanel {
             e.printStackTrace();
         }
     }
+
 
     private void createSearchPanel() {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 5));
@@ -392,14 +396,15 @@ public class USBInfoPanel extends JPanel {
             @Override
             public boolean include(Entry<? extends DefaultTableModel, ? extends Object> entry) {
                 String searchText = searchField.getText().toLowerCase();
-                String selectedBus = (String) busFilter.getSelectedItem();
+                String selectedBus = busFilter.getSelectedItem() != null ? 
+                    (String) busFilter.getSelectedItem() : "All Buses";
 
                 // Search text filter
                 boolean matchesSearch = searchText.isEmpty();
                 if (!matchesSearch) {
                     for (int i = 0; i < entry.getValueCount(); i++) {
-                        String value = entry.getStringValue(i);
-                        if (value != null && value.toLowerCase().contains(searchText)) {
+                        String value = entry.getStringValue(i).toLowerCase();
+                        if (value.contains(searchText)) {
                             matchesSearch = true;
                             break;
                         }
@@ -418,8 +423,19 @@ public class USBInfoPanel extends JPanel {
         sorter.setRowFilter(filter);
         table.setRowSorter(sorter);
     }
-
     public void cleanup() {
-        // Add any cleanup code if needed
+        if (updateTimer != null) {
+            updateTimer.stop();
+            updateTimer = null;
+        }
+        if (devices != null) {
+            devices.clear();
+        }
+        if (model != null) {
+            model.setRowCount(0);
+        }
+        usb = null;
     }
 }
+
+
