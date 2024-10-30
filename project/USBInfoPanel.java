@@ -62,11 +62,21 @@ public class USBInfoPanel extends JPanel {
     }
 
     private void initializeComponents() {
-        // Create main panels
+        // Create tabbed pane
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setBackground(DARKER_BG);
+        tabbedPane.setForeground(Color.WHITE);
+        tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    
+        // Create detail view panel (existing layout)
+        JPanel detailView = new JPanel(new BorderLayout());
+        detailView.setBackground(DARKER_BG);
+    
+        // Create main panels for detail view
         tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBackground(DARKER_BG);
         tablePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
+    
         chartPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -76,7 +86,7 @@ public class USBInfoPanel extends JPanel {
         };
         chartPanel.setBackground(DARKER_BG);
         chartPanel.setPreferredSize(new Dimension(300, 0));
-
+    
         // Create table
         String[] columns = {"Bus", "Device", "Vendor ID", "Product ID"};
         model = new DefaultTableModel(columns, 0) {
@@ -87,26 +97,40 @@ public class USBInfoPanel extends JPanel {
         };
         table = new JTable(model);
         configureTable();
-
+    
         // Create search panel
         createSearchPanel();
         
         // Create stats panel
         createStatsPanel();
-
-        // Layout
+    
+        // Layout for detail view
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 tablePanel, chartPanel);
         splitPane.setDividerLocation(0.7);
         splitPane.setResizeWeight(0.7);
         splitPane.setBackground(DARKER_BG);
         splitPane.setBorder(null);
-
+    
         tablePanel.add(new JScrollPane(table), BorderLayout.CENTER);
         
-        add(statsPanel, BorderLayout.NORTH);
-        add(splitPane, BorderLayout.CENTER);
+        detailView.add(statsPanel, BorderLayout.NORTH);
+        detailView.add(splitPane, BorderLayout.CENTER);
+    
+        // Create tree view
+        JPanel treeView = new JPanel(new BorderLayout());
+        treeView.setBackground(DARKER_BG);
+        USBInfoTree usbTree = new USBInfoTree(usb);
+        treeView.add(usbTree); // Changed this line - directly add the USBInfoTree panel
+    
+        // Add both views to tabbed pane
+        tabbedPane.addTab("Detail View", detailView);
+        tabbedPane.addTab("Tree View", treeView);
+    
+        // Add tabbed pane to main panel
+        add(tabbedPane, BorderLayout.CENTER);
     }
+
 
     private void loadUSBData() {
         try {
