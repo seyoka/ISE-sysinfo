@@ -232,8 +232,12 @@
 import java.awt.*;
 import java.awt.geom.*;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -410,9 +414,16 @@ public class DiskInfoPanel extends JPanel {
     }
 
     private void initializeComponents() {
-        JPanel contentPanel = new JPanel(new BorderLayout(20, 0));
-        contentPanel.setBackground(MAIN_CONTENT_COLOR);
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 15, 15));
+        // Create tabbed pane
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setBackground(MAIN_CONTENT_COLOR);
+        tabbedPane.setForeground(TEXT_COLOR);
+        tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+        // Create detail view panel (your existing layout)
+        JPanel detailView = new JPanel(new BorderLayout(20, 0));
+        detailView.setBackground(MAIN_CONTENT_COLOR);
+        detailView.setBorder(BorderFactory.createEmptyBorder(0, 15, 15, 15));
 
         // Create drive list panel with scroll capability
         JPanel driveListContainer = new JPanel(new BorderLayout());
@@ -424,14 +435,23 @@ public class DiskInfoPanel extends JPanel {
         scrollPane.getViewport().setBackground(MAIN_CONTENT_COLOR);
         driveListContainer.add(scrollPane);
 
-        // Add ring panel and drive list to content panel
-        contentPanel.add(new StorageRingPanel(), BorderLayout.CENTER);
-        contentPanel.add(driveListContainer, BorderLayout.EAST);
-        
-        add(contentPanel, BorderLayout.CENTER);
+        // Add ring panel and drive list to detail view
+        detailView.add(new StorageRingPanel(), BorderLayout.CENTER);
+        detailView.add(driveListContainer, BorderLayout.EAST);
+
+        // Create grid view (DiskMenu)
+        JPanel gridView = DiskMenu.innitDiskMenu();
+        gridView.setBackground(MAIN_CONTENT_COLOR);
+
+        // Add both panels to tabbed pane
+        tabbedPane.addTab("Detail View", detailView);
+        tabbedPane.addTab("Grid View", gridView);
+
+        // Add tabbed pane to main panel
+        add(tabbedPane, BorderLayout.CENTER);
     }
 
-private class StorageRingPanel extends JPanel {
+    private class StorageRingPanel extends JPanel {
         private static final int RING_SIZE = 300;
         private static final int RING_THICKNESS = 25;
         private boolean isHovered = false;
@@ -440,31 +460,8 @@ private class StorageRingPanel extends JPanel {
         public StorageRingPanel() {
             setBackground(MAIN_CONTENT_COLOR);
             setPreferredSize(new Dimension(RING_SIZE + 100, RING_SIZE + 100));
-            
-            // Add mouse listener for hover effects
-
         }
 
-        // private void showDetailedStats(Point location) {
-        //     StringBuilder stats = new StringBuilder("<html>");
-        //     stats.append("<div style='padding: 5px;'>");
-        //     stats.append("<b>Storage Details:</b><br><br>");
-            
-        //     long totalStorage = 0;
-        //     long usedStorage = 0;
-        //     for (DiskData disk : diskDataList) {
-        //         totalStorage += disk.total;
-        //         usedStorage += disk.used;
-        //     }
-
-        //     stats.append(String.format("Total Storage: %s<br>", formatSize(totalStorage)));
-        //     stats.append(String.format("Used Storage: %s<br>", formatSize(usedStorage)));
-        //     stats.append(String.format("Free Storage: %s<br>", formatSize(totalStorage - usedStorage)));
-        //     stats.append(String.format("Usage: %.2f%%<br>", (double) usedStorage / totalStorage * 100));
-        //     stats.append("</div></html>");
-
-        //     showTooltip(stats.toString(), this, location);
-        // }
 
         @Override
         protected void paintComponent(Graphics g) {
