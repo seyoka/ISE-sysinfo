@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.concurrent.ExecutionException;
 
 public class CPULoadChart extends JPanel {
     private LinkedList<Integer> dataPoints = new LinkedList<>();
@@ -68,14 +69,23 @@ public class CPULoadChart extends JPanel {
         }
     }
 
+    //does things in background so it doesn't make the entire gui slow
     private void goTimer(CPU cpu) {
-        Timer timer = new Timer(16, e -> {
-            // Update data point
-            dataPoints.add((int) cpu.totalSocketLoad());
-            if (dataPoints.size() > MAX_POINTS) {
-                dataPoints.removeFirst(); // Remove the oldest point
-            }
-            repaint(); // Refresh the chart
+        Timer timer = new Timer(100, e -> {
+            SwingWorker<Integer, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Integer doInBackground() {
+                    int load = (int) cpu.totalSocketLoad();
+                    dataPoints.add(load);
+                    if (dataPoints.size() > MAX_POINTS) {
+                        dataPoints.removeFirst(); // Remove the oldest point
+                    }
+                    repaint();
+                    return null;
+                }
+            };
+
+            worker.execute();
         });
         timer.start();
     }

@@ -99,7 +99,6 @@ public class DashboardApp {
                 g2.dispose();
             }
         };
-//
 
         button.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         button.setForeground(Color.WHITE);
