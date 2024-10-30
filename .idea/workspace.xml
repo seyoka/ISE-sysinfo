@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="commiting unversioned files">
+    <list default="true" id="504222b2-cf8f-426b-bc16-3fa529e80a41" name="Changes" comment="changed cpucachepage to work without swing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPU.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPU.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPUCachePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPUCachePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Block1Project/CPULoadChart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPU.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUCachePage.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/CPUCachePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPUCachePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPUInfoPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/CPULoadChart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/DashboardApp$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/CPULoadChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/CPULoadChart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/DashboardApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/DashboardApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +69,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -188,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730143485377</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="changed cpucachepage to work without swing">
+      <option name="closed" value="true" />
+      <created>1730248080459</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1730248080459</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +212,7 @@
     <MESSAGE value="added title to cpu panel" />
     <MESSAGE value="added cpu load to cpu panel (this makes things slow though)" />
     <MESSAGE value="commiting unversioned files" />
-    <option name="LAST_COMMIT_MESSAGE" value="commiting unversioned files" />
+    <MESSAGE value="changed cpucachepage to work without swing" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed cpucachepage to work without swing" />
   </component>
 </project>

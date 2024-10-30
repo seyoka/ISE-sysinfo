@@ -6,6 +6,8 @@ public class CPUCachePage extends JPanel {
     private final LinkedHashMap<String, Integer> vals;
     private final Color[] colors;
 
+    private final Color BACKGROUND_COLOR = new Color(30, 30, 47);
+
     public CPUCachePage() {
         CPU cpu = new CPU();
         this.vals = cpu.getAllCache();
@@ -15,11 +17,13 @@ public class CPUCachePage extends JPanel {
                 new Color(192, 114, 237)
         };
         setPreferredSize(new Dimension(800, 600));
+        setBackground(BACKGROUND_COLOR);
     }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+
         drawPieChart(g);
     }
 
@@ -35,7 +39,6 @@ public class CPUCachePage extends JPanel {
         int minAngle = 10; //for small cache
         int totalAngle = 360;
         int i=0;
-        int spacerAngle = 2;
         for(int value: vals.values()){
             int angle = (int)Math.round((double) value / total * totalAngle);
             System.out.println(angle);
@@ -66,19 +69,5 @@ public class CPUCachePage extends JPanel {
             g.drawString(labels + ": " + vals.get(labels) + " Bytes", 550, 115 + (j*30));
             j++;
         }
-    }
-
-    public static void main(String[] args) {
-        System.loadLibrary("sysinfo");
-        cpuInfo cpuTest = new cpuInfo();
-        cpuTest.read(0);
-
-        JFrame frame = new JFrame("Cache Pie Chart");
-        CPUCachePage pieChart = new CPUCachePage();
-        frame.add(pieChart);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 }
